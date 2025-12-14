@@ -1,90 +1,215 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
+
+/* =======================
+   PROJECTS DATA
+======================= */
 
 const projects = [
   {
-    id: "fsr-prosthetic",
-    title: "Force-Sensitive Resistor Calibration for Prosthetic Hand",
-    summary:
-      "Designed and tested Arduino-based circuits and calibration routines to map FSR output to grip force for an affordable prosthetic hand.",
-    bullets: [
-      "Designed voltage divider circuits for FSR-based force sensing",
-      "Collected calibration data and mapped voltage to force",
-      "Characterized sensor behavior (nonlinearity, saturation regions)",
+    id: "fsr",
+    title: "FSR Calibration for Prosthetic Grip Sensing",
+    highlight:
+      "Designed a calibration workflow to translate noisy FSR voltage readings into interpretable grip-force estimates.",
+    tags: ["Circuits", "Calibration", "Prosthetics", "Protocols"],
+    tech: "Arduino, FSRs, voltage divider, data calibration",
+    // Optional later: put images in /public/projects/fsr/...
+    images: [
+      // { src: "/projects/fsr/setup.jpg", alt: "Calibration setup", caption: "Bench setup for calibration runs." },
+      // { src: "/projects/fsr/curve.png", alt: "Calibration curve", caption: "Example mapping from voltage → resistance." },
+      // { src: "/projects/fsr/sheet.png", alt: "Calibration tracking sheet", caption: "Standardized tracking to make runs repeatable." },
     ],
-    tech: "Arduino, FSRs, basic circuit design, Python/Matplotlib",
-    longDescription:
-      "This project focused on making low-cost prosthetic hands more usable by giving them a sense of grip force. I designed voltage divider circuits using force-sensitive resistors (FSRs), then collected data to map analog voltage readings to approximate grip forces. From there, I explored how to threshold and scale the signal to drive simple control actions (e.g., close hand, relax hand) and what calibration routines would look like for a non-technical user.",
-    context:
-      "I worked on this as part of a student team interested in accessible prosthetic design. My contribution focused on the sensing and calibration side rather than mechanical design, which fit my interest in translating signals into interpretable control inputs.",
-    links: [],
+    // Optional later: add links (repo/pdf/demo)
+    links: [
+      // { label: "Repo", href: "https://github.com/..." },
+      // { label: "Calibration Protocol (PDF)", href: "/files/fsr-protocol.pdf" },
+      // { label: "Demo Video", href: "https://youtube.com/..." },
+    ],
+    sections: [
+      {
+        heading: "What I did",
+        bullets: [
+          "Owned planning + task breakdown so calibration became a reusable workflow.",
+          "Designed the circuit from the FSR documentation and sensor behavior.",
+          "Derived voltage-divider equations to compute resistance from measured voltage.",
+          "Wrote a calibration protocol and created a tracking sheet for repeatable runs.",
+        ],
+      },
+      {
+        heading: "Why it was hard",
+        bullets: [
+          "FSRs are finicky: nonlinearity + variability makes “accurate” calibration difficult.",
+          "The goal was a stable, repeatable process that can be improved—not a perfect curve once.",
+        ],
+      },
+      {
+        heading: "Next steps",
+        bullets: [
+          "Build a modular mounting/integration system for an FSR in a prosthetic finger.",
+          "Test how placement affects signal stability and usable force range.",
+        ],
+      },
+    ],
+    reflection: {
+      heading: "Reflection",
+      paragraphs: [
+        "This was one of those projects where the hard part wasn’t “getting a reading,” it was turning a finicky sensor into something you can trust enough to build on.",
+        "It also made me care a lot more about workflows: a clean protocol + tracking sheet can matter as much as the circuit itself, especially if future teammates need to calibrate consistently.",
+        "Going forward, I’m thinking less in terms of perfect accuracy and more in terms of robustness: what’s the most stable signal we can extract for control and feedback?",
+      ],
+    },
   },
+
   {
-    id: "neuronal-modeling",
-    title: "Neuronal Modeling & Analysis (Independent Project)",
-    summary:
-      "Implemented leaky integrate-and-fire neurons, spike-triggered averaging, and Oja's rule to explore how neurons encode and adapt to input structure.",
-    bullets: [
-      "Implemented LIF neurons with configurable parameters and input currents",
-      "Used spike-triggered averaging to estimate receptive fields from simulated data",
-      "Explored Oja's rule as a simple model of Hebbian plasticity with normalization",
-    ],
+    id: "neuro",
+    title: "Neuronal Modeling & Analysis",
+    highlight:
+      "Implemented small computational neuroscience tools to connect theory to code and intuition.",
+    tags: ["Neuro", "Modeling", "Python"],
     tech: "Python, NumPy, Matplotlib",
-    longDescription:
-      "In this ongoing independent project, I'm building small tools to understand how simple neuron models transform input signals. I simulate LIF neurons driven by noisy input, then use spike-triggered averaging to estimate which features of the stimulus drive spiking. I also implement Oja's rule to see how synaptic weights converge onto dominant input patterns over time.",
-    context:
-      "The goal is to connect abstract computational neuroscience ideas to concrete code and visualizations, and to eventually extend this into population-level models or sensory encoding tasks.",
+    images: [],
     links: [],
+    sections: [
+      {
+        heading: "What it includes (so far)",
+        bullets: [
+          "Leaky integrate-and-fire neuron simulations",
+          "Spike-triggered averaging (STA) experiments",
+          "Oja’s rule as a simple plasticity model",
+        ],
+      },
+      {
+        heading: "Direction",
+        bullets: [
+          "Turn each concept into a clean notebook-style writeup with interpretable plots.",
+          "Build toward population-level models or sensory encoding mini-studies.",
+        ],
+      },
+      {
+        heading: "Next steps",
+        bullets: [
+          "Pick one narrative thread and write a concise ‘case study’ deep dive.",
+          "Add a small artifact gallery of plots and explanatory figures.",
+        ],
+      },
+    ],
+    reflection: {
+      heading: "Reflection",
+      paragraphs: [
+        "I like projects like this because they force clarity: if I can’t explain the behavior with a plot and a few sentences, I don’t really understand it.",
+        "This is my sandbox for building intuition that I can later bring into real neural signals and closed-loop systems.",
+      ],
+    },
+  },
+];
+
+/* =======================
+   RESEARCH DATA (carousel only)
+   Specs:
+   - Comparative neuromechanics: paper
+   - Alzheimer's: poster
+   - SCI Moorjani: nothing
+======================= */
+
+const researchItems = [
+  {
+    id: "comparative-neuromechanics",
+    title: "Comparative Neuromechanics Lab",
+    description:
+      "Work on gait/neuromechanics analysis and tooling, with an emphasis on extracting reliable kinematics and building structured workflows for interpretation.",
+    link: null,
   },
   {
-    id: "deeplabcut-xmalab",
-    title: "DeepLabCut Error-Frame Detection Tool (In Progress)",
-    summary:
-      "Building a Python/Streamlit tool to automatically flag trajectory discontinuities in DeepLabCut outputs for rat gait analysis.",
-    bullets: [
-      "Engineered features from bony landmark trajectories (position, velocity, discontinuities)",
-      "Prototyped rules to detect abrupt trajectory jumps indicative of tracking errors",
-      "Designing a UI for quickly reviewing and correcting flagged frames",
-    ],
-    tech: "Python, pandas, Streamlit, basic ML",
-    longDescription:
-      "DeepLabCut is powerful but can still produce frame-by-frame tracking errors, especially when markers are occluded. Currently, much of the correction happens manually in XMALab by visually scanning trajectories. My tool parses DeepLabCut output, computes features such as inter-frame displacement and velocity, and flags candidate error frames. The goal is to reduce manual correction time and create better training datasets for retraining the model.",
-    context:
-      "This project started from a bottleneck I saw in the lab: a lot of human time spent just finding errors. It's also my first self-directed software tool intended to be used by others in the lab, so I'm thinking about usability and maintainability, not just making something that works once.",
-    links: [],
+    id: "alzheimers",
+    title: "Alzheimer’s Disease & Neuroimmune Signaling",
+    description:
+      "Confocal imaging and quantitative analysis of microglia–amyloid interactions and neuroimmune signatures; focused on methods, pipeline clarity, and reproducibility.",
+    link: { label: "Poster", href: "/research/singer-poster.pdf" },
   },
   {
-    id: "next-project",
-    title: "Your Next Neurotech / Hardware Project",
-    summary:
-      "Placeholder for your next project—use this slot when you have a new build, analysis, or paper-ready figure.",
-    bullets: [
-      "Summarize the problem in one sentence",
-      "Highlight your unique contribution (design, analysis, implementation)",
-      "Close with what changed because you did this work",
-    ],
-    tech: "To be decided",
-    longDescription:
-      "This slot is intentionally open. As you build more projects, you can either replace this card or link it to a new write-up. Having a placeholder reminds you that your portfolio is a living document, not a static list of things you're stuck with.",
-    context:
-      "When you add a new project, think in terms of: problem, constraints, your approach, concrete results, and what you'd do next if you had more time.",
-    links: [],
+    id: "sci-moorjani",
+    title: "SCI Moorjani Lab",
+    description:
+      "Early-stage involvement; keeping public detail minimal for now while I define the most meaningful, shareable slice of the work.",
+    link: null,
+  },
+];
+
+const notesItems = [
+  {
+    id: "n1",
+    type: "Question",
+    title: "When is a signal “good enough”?",
+    body:
+      "A precise signal isn’t automatically usable. In biological systems, robustness + interpretability often matter more than squeezing out the last bit of accuracy.",
+  },
+  {
+    id: "n2",
+    type: "Question",
+    title: "Models: clarity or false confidence?",
+    body:
+      "When does a model genuinely sharpen intuition — and when does it just make me feel certain because it’s clean?",
+  },
+  {
+    id: "n3",
+    type: "Fragment",
+    title: "Protocols are epistemology",
+    body:
+      "Writing a protocol forces assumptions into the open. If I can’t explain a step clearly, I usually don’t understand the system as well as I think I do.",
+  },
+  {
+    id: "n4",
+    type: "Fragment",
+    title: "Perception as an interface",
+    body:
+      "Ideas like Maya interest me as early intuitions that perception may be a constructed interface — not a direct readout of reality.",
+  },
+  {
+    id: "n5",
+    type: "Lens",
+    title: "Words I’m thinking with",
+    body:
+      "robustness · interpretability · abstraction · feedback · uncertainty · graceful failure",
   },
 ];
 
 function App() {
-  const [selectedProject, setSelectedProject] = useState(projects[0]);
+  const [expandedId, setExpandedId] = useState("fsr");
+  const expandedProject = projects.find((p) => p.id === expandedId) || null;
+
+  const projectsCount = projects.length;
+  const researchCount = researchItems.length;
+
+  // If 1–2 projects, don't scroll; if 3+, enable carousel behavior
+  const projectsUseCarousel = projectsCount >= 3;
+  const researchUseCarousel = researchCount >= 3;
+
+  const projectTileWidth = useMemo(() => {
+    // When carousel, use fixed card width; when not, let them stretch nicely
+    return projectsUseCarousel ? "w-[320px] md:w-[360px]" : "w-full";
+  }, [projectsUseCarousel]);
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100">
-      <div className="max-w-5xl mx-auto px-4 py-10 md:py-16 space-y-16">
-        {/* Header / Nav */}
+      {/* Hide scrollbars for our horizontal scrollers */}
+      <style>{`
+        .hide-scrollbar {
+          scrollbar-width: none; /* Firefox */
+          -ms-overflow-style: none; /* IE/Edge */
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+          display: none; /* Chrome/Safari */
+        }
+      `}</style>
+
+      <div className="max-w-5xl mx-auto px-4 py-10 md:py-16 space-y-14">
+        {/* Header */}
         <header className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
           <div>
             <h1 className="text-3xl md:text-4xl font-bold tracking-tight">
               Krithi Iyer
             </h1>
             <p className="text-sm text-slate-300 mt-1">
-              Electrical Engineering @ Georgia Tech • Threads: Bioengineering & Signal Processing
+              Electrical Engineering @ Georgia Tech • Threads: Bioengineering & Signal Processing.
             </p>
           </div>
           <nav className="flex gap-4 text-sm text-slate-300">
@@ -94,8 +219,8 @@ function App() {
             <a href="#research" className="hover:text-amber-300 transition-colors">
               Research
             </a>
-            <a href="#about" className="hover:text-amber-300 transition-colors">
-              About
+            <a href="#notes" className="hover:text-amber-300 transition-colors">
+              Notes
             </a>
             <a href="#contact" className="hover:text-amber-300 transition-colors">
               Contact
@@ -103,184 +228,392 @@ function App() {
           </nav>
         </header>
 
-        {/* Hero / Intro */}
+        {/* Hero */}
         <section className="grid md:grid-cols-[2fr,1.3fr] gap-10 md:gap-14 items-start">
           <div className="space-y-4">
             <p className="uppercase tracking-[0.2em] text-xs text-amber-300/80">
               Portfolio
             </p>
-            <h2 className="text-2xl md:text-3xl font-semibold leading-snug">
-              I build tools and experiments at the intersection of{" "}
-              <span className="text-amber-300 font-bold">
-                electrical engineering, neuroscience, and computation
-              </span>
-              .
-            </h2>
             <p className="text-sm md:text-base text-slate-300 leading-relaxed">
-              I&apos;m an Electrical Engineering undergraduate at Georgia Tech
-              focused on neuroengineering and brain–computer interfaces. I like
-              designing circuits and software that make sense of neural and
-              behavioral data – and using that understanding to build better
-              devices and experiments.
+              I&apos;m an Electrical Engineering undergraduate at Georgia Tech with interests in
+              neural signals, sensing, and analysis.
             </p>
-            <div className="flex flex-wrap gap-2 pt-2">
-              {[
-                "Neuroengineering",
-                "Brain–Computer Interfaces",
-                "Signal Processing",
-                "Computational Neuroscience",
-                "Embedded Systems",
-              ].map((tag) => (
-                <span
-                  key={tag}
-                  className="text-xs px-3 py-1 rounded-full bg-slate-900 border border-slate-700/70"
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
-          </div>
 
-          {/* Quick stats card */}
-          <div className="space-y-4">
-            <div className="rounded-2xl border border-slate-800 bg-slate-900/70 p-5 space-y-4">
-              <h3 className="text-sm font-semibold text-slate-200">Snapshot</h3>
-              <dl className="space-y-3 text-xs md:text-sm">
-                <div className="flex justify-between gap-4">
-                  <dt className="text-slate-400">Current focus</dt>
-                  <dd className="text-right">
-                    BCIs, neurostimulation, computational tools for neuroscience
-                  </dd>
-                </div>
-                <div className="flex justify-between gap-4">
-                  <dt className="text-slate-400">Strengths</dt>
-                  <dd className="text-right">
-                    Turning messy data into structured systems, bridging hardware
-                    &amp; software
-                  </dd>
-                </div>
-                <div className="flex justify-between gap-4">
-                  <dt className="text-slate-400">Looking for</dt>
-                  <dd className="text-right">
-                    Research &amp; engineering roles in neurotech / neuroengineering
-                  </dd>
-                </div>
-              </dl>
-            </div>
+            <p className="text-sm md:text-base text-slate-300 leading-relaxed mt-2">
+              This site is a collection of{" "}
+              <span className="text-amber-300 font-medium">
+                projects, research, and ideas
+              </span>{" "}
+              I&apos;m currently working through.
+            </p>
           </div>
         </section>
 
-        {/* Projects with detail view */}
+        {/*Projects*/}
         <section id="projects" className="space-y-6">
-          <h2 className="text-xl md:text-2xl font-semibold">Selected Projects</h2>
-
-          <div className="grid md:grid-cols-2 gap-6">
-            {projects.map((project) => (
-              <button
-                key={project.id}
-                onClick={() => setSelectedProject(project)}
-                className={`text-left rounded-2xl border p-5 flex flex-col justify-between transition-all ${
-                  selectedProject?.id === project.id
-                    ? "border-amber-300/80 bg-slate-900"
-                    : "border-slate-800 bg-slate-900/70 hover:border-slate-600 hover:bg-slate-900"
-                }`}
-              >
-                <div className="space-y-3">
-                  <h3 className="font-semibold text-base md:text-lg">
-                    {project.title}
-                  </h3>
-                  <p className="text-sm text-slate-300">{project.summary}</p>
-                  <ul className="text-xs text-slate-400 list-disc list-inside space-y-1">
-                    {project.bullets.map((b) => (
-                      <li key={b}>{b}</li>
-                    ))}
-                  </ul>
-                </div>
-                <div className="pt-4 text-xs text-slate-400 flex items-center justify-between">
-                  <span>Tech: {project.tech}</span>
-                  <span className="text-amber-300 text-[11px]">
-                    Click for more details →
-                  </span>
-                </div>
-              </button>
-            ))}
+          <div>
+            <h2 className="text-xl md:text-2xl font-semibold">Projects</h2>
+            <p className="text-sm text-slate-300 mt-1">
+              Click a project to expand the engineering process.
+            </p>
           </div>
 
-          {selectedProject && (
-            <div className="mt-6 rounded-2xl border border-slate-800 bg-slate-900/80 p-6 space-y-3">
-              <p className="text-xs uppercase tracking-[0.2em] text-amber-300/80">
-                Project Details
-              </p>
-              <h3 className="text-lg md:text-xl font-semibold">
-                {selectedProject.title}
-              </h3>
-              <p className="text-sm text-slate-300">{selectedProject.longDescription}</p>
-              <p className="text-xs text-slate-400">{selectedProject.context}</p>
-              {selectedProject.links && selectedProject.links.length > 0 && (
-                <div className="pt-2 flex flex-wrap gap-3 text-sm">
-                  {selectedProject.links.map((link) => (
-                    <a
-                      key={link.href}
-                      href={link.href}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="px-3 py-1.5 rounded-full border border-slate-700 hover:border-slate-500 hover:bg-slate-900 transition-colors"
+          {/* Project tiles:*/}
+          {projectsUseCarousel ? (
+            <div className="relative">
+              <div className="pointer-events-none absolute left-0 top-0 h-full w-8 bg-gradient-to-r from-slate-950 to-transparent" />
+              <div className="pointer-events-none absolute right-0 top-0 h-full w-8 bg-gradient-to-l from-slate-950 to-transparent" />
+
+              <div
+                className="hide-scrollbar flex gap-6 overflow-x-auto pb-2 px-2 scroll-smooth snap-x snap-mandatory"
+                style={{ WebkitOverflowScrolling: "touch" }}
+              >
+                {projects.map((p) => {
+                  const isOpen = expandedId === p.id;
+
+                  return (
+                    <button
+                      key={p.id}
+                      onClick={() => setExpandedId(isOpen ? null : p.id)}
+                      className={`snap-start shrink-0 ${projectTileWidth} text-left rounded-2xl border p-5 transition-all ${
+                        isOpen
+                          ? "border-amber-300/70 bg-slate-900"
+                          : "border-slate-800 bg-slate-900/60 hover:bg-slate-900 hover:border-slate-600"
+                      }`}
                     >
-                      {link.label}
-                    </a>
-                  ))}
+                      <div className="flex items-start justify-between gap-4">
+                        <h3 className="font-semibold text-base md:text-lg leading-snug">
+                          {p.title}
+                        </h3>
+                        <span className="text-[11px] text-amber-300/90">
+                          {isOpen ? "Open ✓" : "Open →"}
+                        </span>
+                      </div>
+
+                      <p className="text-sm text-slate-300 mt-2">{p.highlight}</p>
+
+                      <div className="flex flex-wrap gap-2 mt-3">
+                        {p.tags.map((t) => (
+                          <span
+                            key={t}
+                            className="text-[11px] px-2.5 py-1 rounded-full bg-slate-950/40 border border-slate-800 text-slate-300"
+                          >
+                            {t}
+                          </span>
+                        ))}
+                      </div>
+
+                      <p className="text-xs text-slate-400 mt-4">Tech: {p.tech}</p>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          ) : (
+            <div className="grid md:grid-cols-2 gap-6">
+              {projects.map((p) => {
+                const isOpen = expandedId === p.id;
+
+                return (
+                  <button
+                    key={p.id}
+                    onClick={() => setExpandedId(isOpen ? null : p.id)}
+                    className={`text-left rounded-2xl border p-5 transition-all ${
+                      isOpen
+                        ? "border-amber-300/70 bg-slate-900"
+                        : "border-slate-800 bg-slate-900/60 hover:bg-slate-900 hover:border-slate-600"
+                    }`}
+                  >
+                    <div className="flex items-start justify-between gap-4">
+                      <h3 className="font-semibold text-base md:text-lg leading-snug">
+                        {p.title}
+                      </h3>
+                      <span className="text-[11px] text-amber-300/90">
+                        {isOpen ? "Collapse ↑" : "Expand ↓"}
+                      </span>
+                    </div>
+
+                    <p className="text-sm text-slate-300 mt-2">{p.highlight}</p>
+
+                    <div className="flex flex-wrap gap-2 mt-3">
+                      {p.tags.map((t) => (
+                        <span
+                          key={t}
+                          className="text-[11px] px-2.5 py-1 rounded-full bg-slate-950/40 border border-slate-800 text-slate-300"
+                        >
+                          {t}
+                        </span>
+                      ))}
+                    </div>
+
+                    <p className="text-xs text-slate-400 mt-4">Tech: {p.tech}</p>
+                  </button>
+                );
+              })}
+            </div>
+          )}
+
+          {/* Expanded detail panel */}
+          {expandedProject && (
+            <div className="rounded-2xl border border-slate-800 bg-slate-900/70 p-6 space-y-6">
+              <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
+                <div>
+                  <p className="text-xs uppercase tracking-[0.2em] text-amber-300/80">
+                    Project Deep Dive
+                  </p>
+                  <h3 className="text-lg md:text-xl font-semibold mt-1">
+                    {expandedProject.title}
+                  </h3>
+                  <p className="text-sm text-slate-300 mt-2 max-w-3xl">
+                    {expandedProject.highlight}
+                  </p>
+                </div>
+
+                {/* Links area */}
+                <div className="flex flex-wrap gap-2">
+                  {expandedProject.links && expandedProject.links.length > 0 ? (
+                    expandedProject.links.map((l) => (
+                      <a
+                        key={l.href}
+                        href={l.href}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="text-sm px-3 py-2 rounded-full border border-slate-700 hover:border-slate-500 hover:bg-slate-900 transition-colors"
+                      >
+                        {l.label}
+                      </a>
+                    ))
+                  ) : (
+                    <span className="text-xs text-slate-400">
+                      Links slot (add repo / PDF / video when ready)
+                    </span>
+                  )}
+                </div>
+              </div>
+
+              {/* Images area */}
+              <div className="space-y-3">
+                <h4 className="text-sm font-semibold text-slate-200">Artifacts</h4>
+                {expandedProject.images && expandedProject.images.length > 0 ? (
+                  <div className="grid sm:grid-cols-2 gap-4">
+                    {expandedProject.images.map((img) => (
+                      <figure key={img.src} className="space-y-2">
+                        <div className="rounded-2xl overflow-hidden border border-slate-800 bg-slate-950/40">
+                          <img
+                            src={img.src}
+                            alt={img.alt}
+                            className="w-full h-auto block"
+                            loading="lazy"
+                          />
+                        </div>
+                        {img.caption && (
+                          <figcaption className="text-xs text-slate-400">
+                            {img.caption}
+                          </figcaption>
+                        )}
+                      </figure>
+                    ))}
+                  </div>
+                ) : (
+                  <div className="rounded-2xl border border-dashed border-slate-700/70 bg-slate-950/30 p-4 text-sm text-slate-400">
+                    Add images/screenshots later by placing them in{" "}
+                    <span className="text-slate-200">
+                      /public/projects/&lt;project&gt;/
+                    </span>{" "}
+                    and adding entries to the{" "}
+                    <span className="text-slate-200">images</span> array.
+                  </div>
+                )}
+              </div>
+
+              {/* Main sections */}
+              <div className="grid md:grid-cols-3 gap-5">
+                {expandedProject.sections.map((sec) => (
+                  <div
+                    key={sec.heading}
+                    className="rounded-2xl border border-slate-800 bg-slate-950/30 p-4 space-y-2"
+                  >
+                    <h4 className="text-sm font-semibold text-slate-200">
+                      {sec.heading}
+                    </h4>
+                    <ul className="text-sm text-slate-300 list-disc list-inside space-y-1">
+                      {sec.bullets.map((b) => (
+                        <li key={b}>{b}</li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+
+              {/* Reflection */}
+              {expandedProject.reflection && (
+                <div className="rounded-2xl border border-slate-800 bg-slate-950/30 p-5 space-y-3">
+                  <h4 className="text-sm font-semibold text-slate-200">
+                    {expandedProject.reflection.heading || "Reflection"}
+                  </h4>
+                  <div className="space-y-2">
+                    {expandedProject.reflection.paragraphs.map((p, idx) => (
+                      <p key={idx} className="text-sm text-slate-300 leading-relaxed">
+                        {p}
+                      </p>
+                    ))}
+                  </div>
                 </div>
               )}
             </div>
           )}
         </section>
 
-        {/* Research */}
+        {/* =======================
+            Research (carousel only)
+        ======================= */}
         <section id="research" className="space-y-6">
-          <h2 className="text-xl md:text-2xl font-semibold">Research</h2>
-          <div className="space-y-4">
-            <div className="rounded-2xl border border-slate-800 bg-slate-900/70 p-5 space-y-2 text-sm">
-              <h3 className="font-semibold">
-                Neuroimmune Modulation with Audiovisual Flicker (Singer Lab)
-              </h3>
-              <p className="text-slate-300">
-                Confocal imaging and 3D analysis of microglia, astrocytes, and
-                amyloid-β plaque interactions in mouse models of stress and
-                neurodegeneration. Exploring how noninvasive audiovisual flicker
-                changes neuroimmune signatures.
-              </p>
+          <div>
+            <h2 className="text-xl md:text-2xl font-semibold">Research</h2>
+            <p className="text-sm text-slate-300 mt-1">
+              Research projects I’ve contributed to. Public artifacts linked where available.
+            </p>
+          </div>
+
+          {/* Research tiles:
+              - If 1–2 items: grid
+              - If 3+: horizontal scroll carousel, scrollbar hidden
+           */}
+          {researchUseCarousel ? (
+            <div className="relative">
+              <div className="pointer-events-none absolute left-0 top-0 h-full w-8 bg-gradient-to-r from-slate-950 to-transparent" />
+              <div className="pointer-events-none absolute right-0 top-0 h-full w-8 bg-gradient-to-l from-slate-950 to-transparent" />
+
+              <div
+                className="hide-scrollbar flex gap-6 overflow-x-auto pb-2 px-2 scroll-smooth snap-x snap-mandatory"
+                style={{ WebkitOverflowScrolling: "touch" }}
+              >
+                {researchItems.map((r) => (
+                  <div
+                    key={r.id}
+                    className="snap-start shrink-0 w-[340px] md:w-[420px] rounded-2xl border border-slate-800 bg-slate-900/60 p-5"
+                  >
+                    <h3 className="font-semibold text-base md:text-lg leading-snug">
+                      {r.title}
+                    </h3>
+                    <p className="text-sm text-slate-300 mt-2 leading-relaxed">
+                      {r.description}
+                    </p>
+
+                    <div className="mt-4">
+                      {r.link ? (
+                        <a
+                          href={r.link.href}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="inline-flex items-center gap-2 text-sm px-3 py-2 rounded-full border border-slate-700 hover:border-slate-500 hover:bg-slate-900 transition-colors text-amber-200"
+                        >
+                          {r.link.label} <span aria-hidden>→</span>
+                        </a>
+                      ) : (
+                        <span className="text-xs text-slate-400">
+                          No public artifacts available
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
-            <div className="rounded-2xl border border-slate-800 bg-slate-900/70 p-5 space-y-2 text-sm">
-              <h3 className="font-semibold">
-                Comparative Neuromechanics &amp; Gait Analysis (Comparative Neuromechanics Lab)
-              </h3>
-              <p className="text-slate-300">
-                DeepLabCut-based tracking and kinematic modeling of rat gait,
-                focusing on robust extraction of bony landmark trajectories and
-                tools to streamline error correction.
-              </p>
+          ) : (
+            <div className="grid md:grid-cols-2 gap-6">
+              {researchItems.map((r) => (
+                <div
+                  key={r.id}
+                  className="rounded-2xl border border-slate-800 bg-slate-900/60 p-5"
+                >
+                  <h3 className="font-semibold text-base md:text-lg leading-snug">
+                    {r.title}
+                  </h3>
+                  <p className="text-sm text-slate-300 mt-2 leading-relaxed">
+                    {r.description}
+                  </p>
+
+                  <div className="mt-4">
+                    {r.link ? (
+                      <a
+                        href={r.link.href}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex items-center gap-2 text-sm px-3 py-2 rounded-full border border-slate-700 hover:border-slate-500 hover:bg-slate-900 transition-colors text-amber-200"
+                      >
+                        {r.link.label} <span aria-hidden>→</span>
+                      </a>
+                    ) : (
+                      <span className="text-xs text-slate-400">
+                        No public artifacts available
+                      </span>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </section>
+
+        {/* Placeholder: Notes */}
+        <section id="notes" className="space-y-6">
+          <div>
+            <h2 className="text-xl md:text-2xl font-semibold">Notes</h2>
+            <p className="text-sm text-slate-300 mt-1">
+              Questions, ideas, and lenses I’m currently thinking with.
+            </p>
+          </div>
+
+          <div className="relative">
+            <div className="pointer-events-none absolute left-0 top-0 h-full w-8 bg-gradient-to-r from-slate-950 to-transparent" />
+            <div className="pointer-events-none absolute right-0 top-0 h-full w-8 bg-gradient-to-l from-slate-950 to-transparent" />
+
+            <div
+              className="hide-scrollbar flex gap-6 overflow-x-auto pb-2 px-2 scroll-smooth snap-x snap-mandatory"
+              style={{ WebkitOverflowScrolling: "touch" }}
+            >
+              {notesItems.map((n) => (
+                <div
+                  key={n.id}
+                  className="snap-start shrink-0 w-[320px] md:w-[420px] rounded-2xl border border-slate-800 bg-slate-900/60 p-5"
+                >
+                  <div className="flex items-start justify-between gap-3">
+                    <h3 className="font-semibold text-base md:text-lg leading-snug">
+                      {n.title}
+                    </h3>
+                    <span className="shrink-0 text-[11px] px-2 py-1 rounded-full border border-slate-700 bg-slate-950/30 text-slate-300">
+                      {n.type}
+                    </span>
+                  </div>
+
+                  <p className="text-sm text-slate-300 mt-2 leading-relaxed">
+                    {n.body}
+                  </p>
+
+                  {/* Optional subtle link slot later */}
+                  {/* {n.link && (
+                    <a
+                      href={n.link.href}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-block mt-4 text-sm text-amber-200 hover:underline"
+                    >
+                      {n.link.label} →
+                    </a>
+                  )} */}
+                </div>
+              ))}
             </div>
           </div>
         </section>
 
-        {/* About */}
-        <section id="about" className="space-y-4">
-          <h2 className="text-xl md:text-2xl font-semibold">About</h2>
-          <p className="text-sm md:text-base text-slate-300 max-w-3xl leading-relaxed">
-            I like problems that sit between disciplines: hardware that needs
-            computational intuition, neuroscience that needs engineering-level
-            rigor, and messy data that needs structure. I&apos;m most energized when
-            I&apos;m building something concrete – circuits, tools, analyses – that
-            make complex systems a bit more legible.
-          </p>
-        </section>
+
 
         {/* Contact */}
-        <section id="contact" className="space-y-3 pb-4">
+        <section id="contact" className="space-y-3 pb-6">
           <h2 className="text-xl md:text-2xl font-semibold">Contact</h2>
-          <p className="text-sm text-slate-300">
-            The best way to reach me is by email.
-          </p>
+          <p className="text-sm text-slate-300">The best way to contact me is through email.</p>
           <div className="flex flex-wrap gap-3 text-sm">
             <a
               href="mailto:krithi.iyer@gmail.com"
@@ -307,8 +640,8 @@ function App() {
           </div>
         </section>
 
-        <footer className="border-t border-slate-800 pt-4 mt-4 text-xs text-slate-500">
-          © {new Date().getFullYear()} Krithi Iyer. Built with React &amp; Tailwind CSS.
+        <footer className="border-t border-slate-800 pt-4 text-xs text-slate-500">
+          © {new Date().getFullYear()} Krithi Iyer.
         </footer>
       </div>
     </div>
