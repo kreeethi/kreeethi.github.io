@@ -12,17 +12,10 @@ const projects = [
       "Designed a calibration workflow to translate noisy FSR voltage readings into interpretable grip-force estimates.",
     tags: ["Circuits", "Calibration", "Prosthetics", "Protocols"],
     tech: "Arduino, FSRs, voltage divider, data calibration",
-    // Optional later: put images in /public/projects/fsr/...
-    images: [
-      // { src: "/projects/fsr/setup.jpg", alt: "Calibration setup", caption: "Bench setup for calibration runs." },
-      // { src: "/projects/fsr/curve.png", alt: "Calibration curve", caption: "Example mapping from voltage → resistance." },
-      // { src: "/projects/fsr/sheet.png", alt: "Calibration tracking sheet", caption: "Standardized tracking to make runs repeatable." },
-    ],
-    // Optional later: add links (repo/pdf/demo)
     links: [
       // { label: "Repo", href: "https://github.com/..." },
       // { label: "Calibration Protocol (PDF)", href: "/files/fsr-protocol.pdf" },
-      // { label: "Demo Video", href: "https://youtube.com/..." },
+      { label: "Demo Video", href: "https://youtu.be/62SAwx68mfI?si=2xxjBSnZVEQOxt-A" },
     ],
     sections: [
       {
@@ -38,7 +31,7 @@ const projects = [
         heading: "Why it was hard",
         bullets: [
           "FSRs are finicky: nonlinearity + variability makes “accurate” calibration difficult.",
-          "The goal was a stable, repeatable process that can be improved—not a perfect curve once.",
+          "The goal was a stable, repeatable process that can be improved, rather than a perfect curve once.",
         ],
       },
       {
@@ -102,34 +95,28 @@ const projects = [
   },
 ];
 
-/* =======================
-   RESEARCH DATA (carousel only)
-   Specs:
-   - Comparative neuromechanics: paper
-   - Alzheimer's: poster
-   - SCI Moorjani: nothing
-======================= */
+/*Research Data*/
 
 const researchItems = [
   {
     id: "comparative-neuromechanics",
     title: "Comparative Neuromechanics Lab",
     description:
-      "Work on gait/neuromechanics analysis and tooling, with an emphasis on extracting reliable kinematics and building structured workflows for interpretation.",
+      "DeepLabCut-based tracking and kinematic modeling of rat gait, focusing on extraction of bony landmark trajectories.",
     link: null,
   },
   {
     id: "alzheimers",
-    title: "Alzheimer’s Disease & Neuroimmune Signaling",
+    title: "Neuroimmune Modulation with Audiovisual Flicker (Singer Lab)",
     description:
-      "Confocal imaging and quantitative analysis of microglia–amyloid interactions and neuroimmune signatures; focused on methods, pipeline clarity, and reproducibility.",
+      "3D analysis of microglia, astrocytes, and amyloid beta plaque interactions in mouse models of chronic stress and neurodegeneration. Exploring how noninvasive audiovisual flicker can recruit neuroimmune cells.",
     link: { label: "Poster", href: "/research/singer-poster.pdf" },
   },
   {
     id: "sci-moorjani",
-    title: "SCI Moorjani Lab",
+    title: "Moorjani Lab",
     description:
-      "Early-stage involvement; keeping public detail minimal for now while I define the most meaningful, shareable slice of the work.",
+      "Creation of a granular scoring system for reach-and-retrieval task in rats with cervical spinal cord contusion injuries to evaluate and monitor motor ability.",
     link: null,
   },
 ];
@@ -138,37 +125,60 @@ const notesItems = [
   {
     id: "n1",
     type: "Question",
-    title: "When is a signal “good enough”?",
+    title: "When is a signal trustworthy?",
     body:
-      "A precise signal isn’t automatically usable. In biological systems, robustness + interpretability often matter more than squeezing out the last bit of accuracy.",
+      "A noisy signal often contains real information, but the problem is knowing when to trust it. I'm interested in how we separate truth from noise without pretending the noise isn't there.",
   },
   {
     id: "n2",
-    type: "Question",
-    title: "Models: clarity or false confidence?",
+    type: "Reflection",
+    title: "Choosing a direction",
     body:
-      "When does a model genuinely sharpen intuition — and when does it just make me feel certain because it’s clean?",
+      "Recently switching into EE made me realize that choosing a direction can feel like losing parts of yourself. I'm still learning how to treat specialization as focus, not erasure.",
   },
   {
     id: "n3",
     type: "Fragment",
-    title: "Protocols are epistemology",
+    title: "Models as compression",
     body:
-      "Writing a protocol forces assumptions into the open. If I can’t explain a step clearly, I usually don’t understand the system as well as I think I do.",
+      "Models make reality easier to reason about. I like the clarity they give, but I'm always aware of the gap between a model working and reality being understood.",
   },
   {
     id: "n4",
     type: "Fragment",
-    title: "Perception as an interface",
+    title: "Limits of objectivity",
     body:
-      "Ideas like Maya interest me as early intuitions that perception may be a constructed interface — not a direct readout of reality.",
+      "What bothers me most about consciousness is that it may never be fully objective. Any explanation is tethered to subjective experience, which makes me wonder what 'understanding' really means here.",
   },
   {
     id: "n5",
-    type: "Lens",
-    title: "Words I’m thinking with",
+    type: "Question",
+    title: "In a parallel universe, would a platitude be called a plongitude?",
     body:
-      "robustness · interpretability · abstraction · feedback · uncertainty · graceful failure",
+      "I like wordplay because it exposes how much meaning lives in structure, not just content.",
+  },
+  {
+    id: "n6",
+    type: "Fragment",
+    title: "Prediction & Processing",
+    body:
+      "I tend to think of the brain as both a signal processor and a prediction engine — constantly filtering inputs while anticipating what comes next.",
+  },
+  {
+    id: "n7",
+    type: "Reflection",
+    title: "Quotes I like",
+    body:[
+    "“The world is presented in a kaleidoscopic flux of impressions.” - Whorf",
+    "“The flow of thought is persistent, and at times merciless.” - Mallett",
+  ],
+},
+  {
+    id: "n8",
+    type: "Fragment",
+    title: "States and their signatures",
+    body:
+      "I'm curious what underlies different conscious states. If brain-wave patterns differ meaningfully, maybe that's one of our footholds.",
   },
 ];
 
@@ -236,7 +246,7 @@ function App() {
             </p>
             <p className="text-sm md:text-base text-slate-300 leading-relaxed">
               I&apos;m an Electrical Engineering undergraduate at Georgia Tech with interests in
-              neural signals, sensing, and analysis.
+              brain-computer interfaces, computational neuroscience, and biological signal processing.
             </p>
 
             <p className="text-sm md:text-base text-slate-300 leading-relaxed mt-2">
@@ -254,7 +264,7 @@ function App() {
           <div>
             <h2 className="text-xl md:text-2xl font-semibold">Projects</h2>
             <p className="text-sm text-slate-300 mt-1">
-              Click a project to expand the engineering process.
+              Click a project to expand.
             </p>
           </div>
 
@@ -389,41 +399,6 @@ function App() {
                     </span>
                   )}
                 </div>
-              </div>
-
-              {/* Images area */}
-              <div className="space-y-3">
-                <h4 className="text-sm font-semibold text-slate-200">Artifacts</h4>
-                {expandedProject.images && expandedProject.images.length > 0 ? (
-                  <div className="grid sm:grid-cols-2 gap-4">
-                    {expandedProject.images.map((img) => (
-                      <figure key={img.src} className="space-y-2">
-                        <div className="rounded-2xl overflow-hidden border border-slate-800 bg-slate-950/40">
-                          <img
-                            src={img.src}
-                            alt={img.alt}
-                            className="w-full h-auto block"
-                            loading="lazy"
-                          />
-                        </div>
-                        {img.caption && (
-                          <figcaption className="text-xs text-slate-400">
-                            {img.caption}
-                          </figcaption>
-                        )}
-                      </figure>
-                    ))}
-                  </div>
-                ) : (
-                  <div className="rounded-2xl border border-dashed border-slate-700/70 bg-slate-950/30 p-4 text-sm text-slate-400">
-                    Add images/screenshots later by placing them in{" "}
-                    <span className="text-slate-200">
-                      /public/projects/&lt;project&gt;/
-                    </span>{" "}
-                    and adding entries to the{" "}
-                    <span className="text-slate-200">images</span> array.
-                  </div>
-                )}
               </div>
 
               {/* Main sections */}
@@ -587,9 +562,18 @@ function App() {
                     </span>
                   </div>
 
-                  <p className="text-sm text-slate-300 mt-2 leading-relaxed">
-                    {n.body}
-                  </p>
+                  {Array.isArray(n.body) ? (
+                    <ul className="mt-3 space-y-2 text-sm text-slate-300 leading-relaxed list-disc list-inside">
+                      {n.body.map((line) => (
+                        <li key={line}>{line}</li>
+                      ))}
+                    </ul>
+                  ) : (
+                    <p className="text-sm text-slate-300 mt-2 leading-relaxed">
+                      {n.body}
+                    </p>
+                  )}
+
 
                   {/* Optional subtle link slot later */}
                   {/* {n.link && (
