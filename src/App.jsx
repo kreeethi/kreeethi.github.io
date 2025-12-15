@@ -45,8 +45,8 @@ const projects = [
     reflection: {
       heading: "Reflection",
       paragraphs: [
-        "This was one of those projects where the hard part wasn’t “getting a reading,” it was turning a finicky sensor into something you can trust enough to build on.",
-        "It also made me care a lot more about workflows: a clean protocol + tracking sheet can matter as much as the circuit itself, especially if future teammates need to calibrate consistently.",
+        "The hard part of this project wasn't getting a reading (though sometimes getting an accurate one was difficult); the hard part was calibrating this finicky sensor into something we could trust enough to build on.",
+        "I also realized the importance of workflows: having task breakdowns, a clean protocol, and a well-organzied tracking sheet were about as important as the circuit itself, especially if future teammates need to calibrate consistently.",
         "Going forward, I’m thinking less in terms of perfect accuracy and more in terms of robustness: what’s the most stable signal we can extract for control and feedback?",
       ],
     },
@@ -60,7 +60,9 @@ const projects = [
     tags: ["Neuro", "Modeling", "Python"],
     tech: "Python, NumPy, Matplotlib",
     images: [],
-    links: [],
+    links: [
+      { label: "Repo", href: "https://github.com/kreeethi/comp-neuro" }
+    ],
     sections: [
       {
         heading: "What it includes (so far)",
@@ -73,14 +75,15 @@ const projects = [
       {
         heading: "Direction",
         bullets: [
-          "Turn each concept into a clean notebook-style writeup with interpretable plots.",
+          "Gain conceptual understanding of computational neuroscience topics.",
+          "Turn each concept into a notebook-style, reflective writeup with plots.",
           "Build toward population-level models or sensory encoding mini-studies.",
         ],
       },
       {
         heading: "Next steps",
         bullets: [
-          "Pick one narrative thread and write a concise ‘case study’ deep dive.",
+          "Select a narrative thread and do a 'case-study' deep dive.",
           "Add a small artifact gallery of plots and explanatory figures.",
         ],
       },
@@ -110,7 +113,10 @@ const researchItems = [
     title: "Neuroimmune Modulation with Audiovisual Flicker (Singer Lab)",
     description:
       "3D analysis of microglia, astrocytes, and amyloid beta plaque interactions in mouse models of chronic stress and neurodegeneration. Exploring how noninvasive audiovisual flicker can recruit neuroimmune cells.",
-    link: { label: "Poster", href: "/research/singer-poster.pdf" },
+    links: [
+      { label: "Poster", href: "/research/singer-poster.pdf" },
+      { label: "Report", href: "/research/singer-fa25-report.pdf"},
+    ],
   },
   {
     id: "sci-moorjani",
@@ -475,20 +481,21 @@ function App() {
                       {r.description}
                     </p>
 
-                    <div className="mt-4">
-                      {r.link ? (
-                        <a
-                          href={r.link.href}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="inline-flex items-center gap-2 text-sm px-3 py-2 rounded-full border border-slate-700 hover:border-slate-500 hover:bg-slate-900 transition-colors text-amber-200"
-                        >
-                          {r.link.label} <span aria-hidden>→</span>
-                        </a>
+                    <div className="mt-4 flex flex-wrap gap-2">
+                      {r.links && r.links.length > 0 ? (
+                        r.links.map((l) => (
+                          <a
+                            key={l.href}
+                            href={l.href}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="inline-flex items-center gap-2 text-sm px-3 py-2 rounded-full border border-slate-700 hover:border-slate-500 hover:bg-slate-900 transition-colors text-amber-200"
+                          >
+                            {l.label} <span aria-hidden>→</span>
+                          </a>
+                        ))
                       ) : (
-                        <span className="text-xs text-slate-400">
-                          No public artifacts available
-                        </span>
+                        <span className="text-xs text-slate-400">No public artifacts available</span>
                       )}
                     </div>
                   </div>
@@ -509,20 +516,21 @@ function App() {
                     {r.description}
                   </p>
 
-                  <div className="mt-4">
-                    {r.link ? (
-                      <a
-                        href={r.link.href}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="inline-flex items-center gap-2 text-sm px-3 py-2 rounded-full border border-slate-700 hover:border-slate-500 hover:bg-slate-900 transition-colors text-amber-200"
-                      >
-                        {r.link.label} <span aria-hidden>→</span>
-                      </a>
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    {r.links && r.links.length > 0 ? (
+                      r.links.map((l) => (
+                        <a
+                          key={l.href}
+                          href={l.href}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="inline-flex items-center gap-2 text-sm px-3 py-2 rounded-full border border-slate-700 hover:border-slate-500 hover:bg-slate-900 transition-colors text-amber-200"
+                        >
+                          {l.label} <span aria-hidden>→</span>
+                        </a>
+                      ))
                     ) : (
-                      <span className="text-xs text-slate-400">
-                        No public artifacts available
-                      </span>
+                      <span className="text-xs text-slate-400">No public artifacts available</span>
                     )}
                   </div>
                 </div>
