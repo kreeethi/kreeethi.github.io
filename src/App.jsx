@@ -13,7 +13,7 @@ const projects = [
     tags: ["Circuits", "Calibration", "Prosthetics", "Protocols"],
     tech: "Arduino, FSRs, voltage divider, data calibration",
     links: [
-      // { label: "Repo", href: "https://github.com/..." },
+      { label: "Repo", href: "https://github.com/kreeethi/fsr-calibration" },
       // { label: "Calibration Protocol (PDF)", href: "/files/fsr-protocol.pdf" },
       { label: "Demo Video", href: "https://youtu.be/62SAwx68mfI?si=2xxjBSnZVEQOxt-A" },
     ],
@@ -46,7 +46,7 @@ const projects = [
       heading: "Reflection",
       paragraphs: [
         "The hard part of this project wasn't getting a reading (though sometimes getting an accurate one was difficult); the hard part was calibrating this finicky sensor into something we could trust enough to build on.",
-        "I also realized the importance of workflows: having task breakdowns, a clean protocol, and a well-organzied tracking sheet were about as important as the circuit itself, especially if future teammates need to calibrate consistently.",
+        "I also realized the importance of workflows: having task breakdowns, a clean protocol, and a well-organized tracking sheet were about as important as the circuit itself, especially if future teammates need to calibrate consistently.",
         "Going forward, I’m thinking less in terms of perfect accuracy and more in terms of robustness: what’s the most stable signal we can extract for control and feedback?",
       ],
     },
@@ -93,6 +93,54 @@ const projects = [
       paragraphs: [
         "I like projects like this because they force clarity: if I can’t explain the behavior with a plot and a few sentences, I don’t really understand it.",
         "This is my sandbox for building intuition that I can later bring into real neural signals and closed-loop systems.",
+      ],
+    },
+  },
+
+  {
+    id: "arm-band",
+    title: "Integration of Vibration Motors for Prosthetic Haptic Feedback",
+    highlight:
+      "Prototyped spring-cord lock mechanism and an iteratively fabricated arm band for haptic feedback integration.",
+    tags: ["CAD", "Integration", "Prosthetics", "Prototyping"],
+    tech: "Fusion 360, Neoprene, 3D Printing, Bambu Studio, Sewing",
+    links: [
+      { label: "Design Sketches", href: "/projects/arm-band/prototype-design.pdf" },
+      // { label: "Calibration Protocol (PDF)", href: "/files/fsr-protocol.pdf" },
+      // { label: "Demo Video", href: "https://youtu.be/62SAwx68mfI?si=2xxjBSnZVEQOxt-A" },
+    ],
+    sections: [
+      {
+        heading: "What I did",
+        bullets: [
+          "Brainstormed spring-cord locking mechanism for secure and adjustable integration of vibration motors.",
+          "Created initial design sketches and prototyping diagrams.",
+          "Modified a related CAD model to meet functional constraints.",
+          "Sewed and iterated through multiple arm-band prototypes, adapting techniques to handle neoprene's material qualities.",
+        ],
+      },
+      {
+        heading: "Design challenges",
+        bullets: [
+          "Material trade-offs: Neoprene is ideal for comfort and flexibility, but is difficult to sew.",
+          "Comfort vs. stability: Ensuring secure attachment without leading to discomfort or restricted movement.",
+          "Integration: Everything was very small. Fitting motors, wiring, and the locking mechanism into something compact was challenging.",
+        ],
+      },
+      {
+        heading: "Outcome",
+        bullets: [
+          "Produced a functional prototype that was used for testing of the vibration motors.",
+          "Established a modular mechanical design that could be easily further developed for future iterations.",
+        ],
+      },
+    ],
+    reflection: {
+      heading: "Reflection",
+      paragraphs: [
+        "I learned how important designing and documenting different ideas/prototypes was. Even though the spring-cord lock mechanism was not the final version, an earlier design I had developed (sliding track) was used.",
+        "Small mechanical and material decisions compound in wearable systems.",
+        "We made changes to the arm band almost weekly. Iterating both physically and in CAD was essential to understand comfort and functionality.",
       ],
     },
   },
@@ -201,7 +249,7 @@ function App() {
 
   const projectTileWidth = useMemo(() => {
     // When carousel, use fixed card width; when not, let them stretch nicely
-    return projectsUseCarousel ? "w-[320px] md:w-[360px]" : "w-full";
+    return projectsUseCarousel ? "w-[340px] md:w-[420px]" : "w-full";
   }, [projectsUseCarousel]);
 
   return (
@@ -272,6 +320,9 @@ function App() {
             <p className="text-sm text-slate-300 mt-1">
               Click a project to expand.
             </p>
+            <p className="text-xs text-slate-400 mt-2">
+              Scroll → for more
+            </p>
           </div>
 
           {/* Project tiles:*/}
@@ -281,7 +332,7 @@ function App() {
               <div className="pointer-events-none absolute right-0 top-0 h-full w-8 bg-gradient-to-l from-slate-950 to-transparent" />
 
               <div
-                className="hide-scrollbar flex gap-6 overflow-x-auto pb-2 px-2 scroll-smooth snap-x snap-mandatory"
+                className="hide-scrollbar flex items-stretch gap-6 overflow-x-auto pb-2 px-2 scroll-smooth snap-x snap-mandatory"
                 style={{ WebkitOverflowScrolling: "touch" }}
               >
                 {projects.map((p) => {
@@ -291,18 +342,20 @@ function App() {
                     <button
                       key={p.id}
                       onClick={() => setExpandedId(isOpen ? null : p.id)}
-                      className={`snap-start shrink-0 ${projectTileWidth} text-left rounded-2xl border p-5 transition-all ${
+                      className={`snap-start shrink-0 self-stretch w-[320px] md:w-[420px] flex flex-col text-left rounded-2xl border p-5 transition-all ${
                         isOpen
                           ? "border-amber-300/70 bg-slate-900"
                           : "border-slate-800 bg-slate-900/60 hover:bg-slate-900 hover:border-slate-600"
                       }`}
+
                     >
-                      <div className="flex items-start justify-between gap-4">
-                        <h3 className="font-semibold text-base md:text-lg leading-snug">
+                      <div className="flex items-start justify-between gap-3">
+                        <h3 className="min-w-0 font-semibold text-base md:text-lg leading-snug">
                           {p.title}
                         </h3>
-                        <span className="text-[11px] text-amber-300/90">
-                          {isOpen ? "Open ✓" : "Open →"}
+
+                        <span className="shrink-0 whitespace-nowrap text-[11px] text-amber-300/90">
+                          {isOpen ? "Collapse ↑" : "Expand ↓"}
                         </span>
                       </div>
 
@@ -454,6 +507,9 @@ function App() {
             <p className="text-sm text-slate-300 mt-1">
               Research projects I’ve contributed to. Public artifacts linked where available.
             </p>
+            <p className="text-xs text-slate-400 mt-2">
+              Scroll → for more
+            </p>
           </div>
 
           {/* Research tiles:
@@ -546,6 +602,9 @@ function App() {
             <p className="text-sm text-slate-300 mt-1">
               Questions, ideas, and lenses I’m currently thinking with.
             </p>
+            <p className="text-xs text-slate-400 mt-2">
+              Scroll → for more
+            </p>
           </div>
 
           <div className="relative">
@@ -633,7 +692,7 @@ function App() {
         </section>
 
         <footer className="border-t border-slate-800 pt-4 text-xs text-slate-500">
-          © {new Date().getFullYear()} Krithi Iyer.
+          © {new Date().getFullYear()} Krithi Iyer. Created with React & Tailwind CSS.
         </footer>
       </div>
     </div>
