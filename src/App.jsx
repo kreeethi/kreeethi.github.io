@@ -162,8 +162,9 @@ const researchItems = [
     description:
       "3D analysis of microglia, astrocytes, and amyloid beta plaque interactions in mouse models of chronic stress and neurodegeneration. Exploring how noninvasive audiovisual flicker can recruit neuroimmune cells.",
     links: [
-      { label: "Poster", href: "/research/singer-poster.pdf" },
-      { label: "Report", href: "/research/singer-fa25-report.pdf"},
+      // { label: "Poster", href: "/research/singer-poster.pdf" },
+      // { label: "Report", href: "/research/singer-fa25-report.pdf"},
+      { label: "Abstract", href: "/research/singer-abstract.pdf"},
     ],
   },
   {
