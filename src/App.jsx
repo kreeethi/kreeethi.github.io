@@ -53,6 +53,54 @@ const projects = [
   },
 
   {
+    id: "iv-alert",
+    title: "Multi-sensor Gravity IV Integrity Monitor",
+    highlight:
+      "Prototyped a multi-sensor IV monitoring concept to distinguish failure modes for early, actionable alerts.",
+    tags: ["Sensors", "Prototyping", "Healthcare"],
+    tech: "Arduino, sensor fusion, thresholding + predictive logic",
+    links: [
+      { label: "Repo", href: "https://github.com/kreeethi/final-mth-code-2026" },
+      { label: "Presentation (PDF)", href: "/projects/iv-alert/iv-presentation.pdf" },
+      // { label: "Prototyping Process (PDF)", href: }
+      { label: "Demo Video", href: "https://youtu.be/rf8NxCiG18U" },
+    ],
+    sections: [
+      {
+        heading: "What I did",
+        bullets: [
+          "Defined failure modes (leak, occlusion) and translated them into measurable signals.",
+          "Designed a multi-sensor (water level sensor & photoresistor) approach to increase reliability compared to single-sensor detection.",
+          "Built and iterated on the circuit design.",
+          "Implemented early alert logic aimed at reducing nurse workload.",
+        ],
+      },
+      {
+        heading: "Why it was hard",
+        bullets: [
+          "Photoresistors are slow and finicky. Our initial plan was to detect drip rate, but we had to pivot to using it to determine whether there was water flow or not.",
+          "Each sensor has edge cases. We had to decide how to combine signals without overfitting to one.",
+        ],
+      },
+      {
+        heading: "Next steps",
+        bullets: [
+          "Using more predictive modeling (i.e. drip rate) to improve early alerts.",
+          "More compact assembly - converting circuit into PCB design.",
+          "Implementing a movement-based ML model to determine which patient movements might trigger IV failure.",
+        ],
+      },
+    ],
+    reflection: {
+      heading: "Reflection",
+      paragraphs: [
+        "This project pushed me toward the kind of engineering I like most: extracting a trustworthy signal from messy reality and designing a system around failure modes rather than ideal behavior.",
+        "It also made the limits of single-sensor solutions more obvious. Sensor redundancy doesn't just mean more signals, it means more reliability.",
+      ],
+    },
+  },
+
+  {
     id: "neuro",
     title: "Neuronal Modeling & Analysis",
     highlight:
