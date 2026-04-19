@@ -61,9 +61,9 @@ const projects = [
     tech: "Arduino, sensor fusion, thresholding + predictive logic",
     links: [
       { label: "Repo", href: "https://github.com/kreeethi/final-mth-code-2026" },
-      { label: "Presentation (PDF)", href: "/projects/iv-alert/iv-presentation.pdf" },
+      { label: "Presentation", href: "/projects/iv-alert/iv-presentation.pdf" },
       // { label: "Prototyping Process (PDF)", href: }
-      { label: "Demo Video", href: "https://youtu.be/rf8NxCiG18U" },
+      { label: "Video", href: "https://youtu.be/rf8NxCiG18U" },
     ],
     sections: [
       {
@@ -96,6 +96,53 @@ const projects = [
       paragraphs: [
         "This project pushed me toward the kind of engineering I like most: extracting a trustworthy signal from messy reality and designing a system around failure modes rather than ideal behavior.",
         "It also made the limits of single-sensor solutions more obvious. Sensor redundancy doesn't just mean more signals, it means more reliability.",
+      ],
+    },
+  },
+
+  {
+    id: "cat-toy",
+    title: "PIR-based Interactive Cat Toy",
+    highlight:
+      "Designed a PIR sensor-driven cat toy using a state machine to create responsive behavior based on motion detection.",
+    tags: ["Embedded Systems", "PIR Sensor", "State Machines"],
+    tech: "Arduino, PIR sensor, servo motor, finite state machine logic",
+    links: [
+      { label: "State Diagram", href: "/projects/cat-toy/cat-toy-state-diagram.pdf" },
+      { label: "Prototyping Process (PDF)", href: "/project/cat-toy/cat-toy-prototyping-process.pdf" },
+      { label: "Demo Video", href: "https://youtu.be/BjBKAhAz6ts?si=Je_egIbfmNa8WPfo" },
+    ],
+    sections: [
+      {
+        heading: "The Problem",
+        bullets: [
+          "Most interactive toys fall into predictable loops, and can lose engagement quickly.",
+          "The goal with this cat toy was to create interactions that responded to the behavior of the cats to retain engagement.",
+        ],
+      },
+      {
+        heading: "The Process",
+        bullets: [
+          "Set-up servo motor originally with FSR-based circuit.",
+          "FSR had too slow of a response, and was too finicky so I switched to a PIR sensor",
+          "Designed a finite state machine to structure behavior across idle, attract, and active engagement states",
+          "Shifted from loop-based control to event-driven logic so behavior was responding to real-time input",
+        ],
+      },
+      {
+        heading: "The Outcome",
+        bullets: [
+          "Produced a working prototype with distinct behavioral states and responsive transitions",
+          "Achieved more varied and less predictable motion compared to simple loop-based design",
+          "Still slightly finicky and may not accurately represent prey like behavior for cats",
+        ],
+      },
+    ],
+    reflection: {
+      heading: "Reflection",
+      paragraphs: [
+        "Rather than the behavior of the servo motor being a loop of actions, its behavior depended on a system of states and transitions",
+        "I am excited to test a more developed version on my cats - I suspect that there's a lot I can do to make the design more interactive, such as adjusting the timing and variability",
       ],
     },
   },
@@ -337,6 +384,9 @@ function App() {
             </a>
             <a href="#contact" className="hover:text-amber-300 transition-colors">
               Contact
+            </a>
+            <a href="/resume/krithi-iyer-resume-2026.pdf" className="hover:text-amber-300 transition-colors">
+              Resume (PDF)
             </a>
           </nav>
         </header>
