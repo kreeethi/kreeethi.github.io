@@ -2,6 +2,7 @@ import { useState } from "react";
 import { projects } from "../../data/projects";
 import { experienceItems } from "../../data/experience";
 import { notesItems } from "../../data/notes";
+import ThemeToggle from "./ThemeToggle";
 
 function Professional({ onEnterUnprofessional }) {
   const [expandedId, setExpandedId] = useState("fsr");
@@ -40,7 +41,7 @@ function Professional({ onEnterUnprofessional }) {
         {/* Header */}
         <header className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
           <div>
-            <h1 className="font-display text-3xl md:text-4xl font-semibold tracking-tight">
+            <h1 className="font-display text-5xl md:text-6xl font-semibold tracking-tight">
               Krithi Iyer
             </h1>
             {/* Signature move: a single 1px accent rule, styled like a
@@ -66,6 +67,7 @@ function Professional({ onEnterUnprofessional }) {
             <a href="/resume/krithi-iyer-resume-2026.pdf" className="hover:text-accent transition-colors">
               Resume (PDF)
             </a>
+            <ThemeToggle />
             <button
               type="button"
               onClick={onEnterUnprofessional}
@@ -77,8 +79,8 @@ function Professional({ onEnterUnprofessional }) {
         </header>
 
         {/* Hero */}
-        <section className="max-w-3xl">
-          <div className="space-y-4">
+        <section className="grid md:grid-cols-[1.4fr,1fr] gap-10 md:gap-14 items-center">
+          <div className="space-y-4 max-w-xl">
             <p className="font-mono uppercase tracking-[0.2em] text-xs text-accent-2/90">
               Portfolio
             </p>
@@ -94,6 +96,28 @@ function Professional({ onEnterUnprofessional }) {
               </span>{" "}
               I&apos;m currently working through.
             </p>
+          </div>
+
+          {/* PLACEHOLDER — swap the src below for your actual photo once you
+              have one (e.g. /images/headshot.jpg in the public/ folder).
+              Layout, sizing, and border treatment are already final; only
+              the image source needs to change. */}
+          <div className="relative aspect-[4/5] w-full max-w-xs md:max-w-sm mx-auto md:mx-0 md:ml-auto rounded-2xl border border-border bg-surface overflow-hidden">
+            <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 text-center px-6">
+              <span className="font-mono text-xs text-muted">
+                Photo placeholder
+              </span>
+              <span className="font-mono text-[11px] text-muted/70">
+                Swap in /images/headshot.jpg
+              </span>
+            </div>
+            {/* Uncomment once the photo exists:
+            <img
+              src="/images/headshot.jpg"
+              alt="Krithi Iyer"
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+            */}
           </div>
         </section>
 
