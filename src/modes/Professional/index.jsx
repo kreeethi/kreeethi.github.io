@@ -73,13 +73,13 @@ function Professional({ onEnterUnprofessional }) {
               onClick={onEnterUnprofessional}
               className="text-sm px-3 py-1.5 rounded-full border border-border hover:border-accent/60 hover:text-accent transition-colors"
             >
-              Neuron Mode →
+              Unprofessional Mode →
             </button>
           </nav>
         </header>
 
         {/* Hero */}
-        <section className="grid md:grid-cols-[1.4fr,1fr] gap-10 md:gap-14 items-center">
+        <section className="grid md:grid-cols-[1.1fr,1fr] gap-10 md:gap-14 items-center">
           <div className="space-y-4 max-w-xl">
             <p className="font-mono uppercase tracking-[0.2em] text-xs text-accent-2/90">
               Portfolio
@@ -98,7 +98,7 @@ function Professional({ onEnterUnprofessional }) {
             </p>
           </div>
 
-          <div className="relative aspect-[4/5] w-full max-w-xs md:max-w-sm mx-auto md:mx-0 md:ml-auto rounded-2xl border border-border bg-surface overflow-hidden">
+          <div className="relative aspect-[3/2] w-full max-w-md mx-auto md:mx-0 md:ml-auto rounded-2xl border border-border bg-surface overflow-hidden">
             <img
               src="/images/headshot.jpg"
               alt="Krithi Iyer"
