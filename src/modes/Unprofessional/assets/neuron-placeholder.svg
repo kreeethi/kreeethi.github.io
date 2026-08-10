@@ -8,7 +8,7 @@
   <!-- Dendrites: four interactive trunks (matching regions.js), plus a
        few small decorative sub-branches near each tip that are NOT
        separately clickable. -->
-  <g stroke="#64748b" stroke-width="2" stroke-linecap="round">
+  <g stroke="#FF4D5E" stroke-width="2" stroke-linecap="round">
     <path d="M160 200 C 110 150, 70 90, 40 60" />
     <path d="M160 190 C 100 170, 55 155, 25 150" />
     <path d="M160 210 C 100 230, 55 245, 25 250" />
@@ -24,7 +24,7 @@
   <!-- Axon: single shaft, branching into six terminals (matching
        regions.js). Real axons branch at the terminal, not along the
        shaft, so this stays anatomically reasonable. -->
-  <g stroke="#94a3b8" stroke-width="2.5" stroke-linecap="round">
+  <g stroke="#4DFF88" stroke-width="2.5" stroke-linecap="round">
     <path d="M215 200 L 520 200" />
     <path d="M520 200 C 560 190, 590 130, 620 70" />
     <path d="M520 200 C 570 210, 620 170, 660 110" />
@@ -35,7 +35,7 @@
   </g>
 
   <!-- Terminal boutons -->
-  <g fill="#cbd5e1">
+  <g fill="#FF9E3D">
     <circle cx="620" cy="70" r="6" />
     <circle cx="660" cy="110" r="6" />
     <circle cx="685" cy="170" r="6" />
@@ -45,5 +45,5 @@
   </g>
 
   <!-- Soma -->
-  <circle cx="160" cy="200" r="55" fill="#1e293b" stroke="#f0c987" stroke-width="2.5" />
+  <circle cx="160" cy="200" r="55" fill="#0A0F14" stroke="#4D9FFF" stroke-width="2.5" />
 </svg>

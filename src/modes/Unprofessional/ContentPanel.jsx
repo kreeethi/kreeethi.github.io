@@ -162,7 +162,7 @@ function ContentPanel({ region, projects, experienceItems, onClose, triggerRef }
         role="dialog"
         aria-modal="true"
         aria-label={title}
-        className="panel-enter relative z-10 w-full max-w-lg max-h-[80vh] overflow-y-auto rounded-2xl border border-slate-800 bg-slate-900 p-6 space-y-4"
+        className="panel-enter relative z-10 w-full max-w-lg max-h-[80vh] overflow-y-auto rounded-2xl border border-slate-800 bg-[#0D0D0D] p-6 space-y-4"
       >
         <div className="flex items-start justify-between gap-4">
           <h3 className="text-lg font-semibold text-slate-100">{title}</h3>
@@ -170,7 +170,7 @@ function ContentPanel({ region, projects, experienceItems, onClose, triggerRef }
             type="button"
             ref={closeButtonRef}
             onClick={onClose}
-            className="shrink-0 text-sm px-3 py-1 rounded-full border border-slate-700 hover:border-slate-500 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-amber-300"
+            className="shrink-0 text-sm px-3 py-1 rounded-full border border-slate-700 hover:border-slate-500 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#FF9E3D]"
           >
             Close
           </button>

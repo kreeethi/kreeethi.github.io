@@ -1,3 +1,40 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* ── Design tokens (Stage 6 color pass) ───────────────────────────────
+   Add this near the top of src/index.css, AFTER the three @tailwind
+   directives (@tailwind base; @tailwind components; @tailwind utilities;)
+   if your file starts with those, as the default Vite+Tailwind scaffold
+   does. If your index.css looks different from that, paste it and I'll
+   place this correctly instead of guessing.
+
+   Values are RGB channel triples (not hex) so Tailwind's `/opacity`
+   modifier syntax works on these tokens the same way it did on the old
+   amber-300/slate-800 utilities — e.g. `text-accent/80`, `bg-accent-2/10`.
+*/
+
+:root {
+  --color-bg: 245 247 247;
+  --color-surface: 255 255 255;
+  --color-ink: 20 32 31;
+  --color-muted: 91 104 103;
+  --color-border: 216 222 221;
+  --color-accent: 46 127 214;     /* DAPI-blue, daylight-tuned */
+  --color-accent-2: 232 133 58;   /* amyloid-orange, daylight-tuned */
+}
+
+.dark {
+  --color-bg: 10 15 18;
+  --color-surface: 16 21 26;
+  --color-ink: 231 237 236;
+  --color-muted: 138 151 150;
+  --color-border: 42 51 54;
+  --color-accent: 77 159 255;     /* true DAPI-blue */
+  --color-accent-2: 255 158 61;   /* true amyloid-orange */
+}
+
+body {
+  background-color: rgb(var(--color-bg));
+  color: rgb(var(--color-ink));
+}

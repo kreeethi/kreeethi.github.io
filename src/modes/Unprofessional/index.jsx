@@ -18,7 +18,7 @@ function Unprofessional({ onExit }) {
   }
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col">
+    <div className="min-h-screen bg-[#050505] text-slate-100 flex flex-col">
       {/* Small bits of motion CSS scoped to this mode — same inline-style
           pattern the Professional mode already uses for its scrollbar
           hiding, kept consistent rather than introducing a new approach. */}
@@ -47,7 +47,7 @@ function Unprofessional({ onExit }) {
 
       <header className="flex flex-wrap items-center justify-between gap-4 px-4 md:px-8 py-5">
         <div>
-          <p className="text-xs uppercase tracking-[0.2em] text-amber-300/80">
+          <p className="text-xs uppercase tracking-[0.2em] text-[#FF9E3D]/80">
             Unprofessional Mode
           </p>
           <p className="text-sm text-slate-400 mt-1">
