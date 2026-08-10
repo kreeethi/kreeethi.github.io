@@ -31,11 +31,11 @@ function Unprofessional({ onExit }) {
           animation: neuron-pulse 2.4s ease-in-out infinite;
         }
         @keyframes panel-enter {
-          from { opacity: 0; transform: scale(0.97); }
-          to { opacity: 1; transform: scale(1); }
+          from { opacity: 0; transform: scale(0.97) translateY(6px); }
+          to { opacity: 1; transform: scale(1) translateY(0); }
         }
         .panel-enter {
-          animation: panel-enter 160ms ease-out;
+          animation: panel-enter 200ms cubic-bezier(0.16, 1, 0.3, 1);
         }
         @media (prefers-reduced-motion: reduce) {
           .neuron-hit-dot,
