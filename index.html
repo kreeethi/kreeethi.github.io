@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" class="dark">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
@@ -12,8 +12,23 @@
       href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap"
       rel="stylesheet"
     />
-    <script type="module" crossorigin src="/assets/index-nQ0p0og4.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-DKVVVJhd.css">
+
+    <!-- Resolve theme before first paint, so there's no flash of the wrong
+         theme while React mounts. Mirrors the same storage key and fallback
+         logic ThemeToggle uses at runtime. -->
+    <script>
+      (function () {
+        var STORAGE_KEY = "krithi-portfolio-theme";
+        var stored = localStorage.getItem(STORAGE_KEY);
+        var prefersDark =
+          window.matchMedia &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches;
+        var isDark = stored ? stored === "dark" : prefersDark;
+        if (isDark) document.documentElement.classList.add("dark");
+      })();
+    </script>
+    <script type="module" crossorigin src="/assets/index-S2IWA0DZ.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-CIsBtqz_.css">
   </head>
   <body>
     <div id="root"></div>
