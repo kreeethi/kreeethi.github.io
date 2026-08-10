@@ -73,7 +73,7 @@ function Professional({ onEnterUnprofessional }) {
               onClick={onEnterUnprofessional}
               className="text-sm px-3 py-1.5 rounded-full border border-border hover:border-accent/60 hover:text-accent transition-colors"
             >
-              Unprofessional Mode →
+              Neuron Mode →
             </button>
           </nav>
         </header>
@@ -98,10 +98,6 @@ function Professional({ onEnterUnprofessional }) {
             </p>
           </div>
 
-          {/* PLACEHOLDER — swap the src below for your actual photo once you
-              have one (e.g. /images/headshot.jpg in the public/ folder).
-              Layout, sizing, and border treatment are already final; only
-              the image source needs to change. */}
           <div className="relative aspect-[4/5] w-full max-w-xs md:max-w-sm mx-auto md:mx-0 md:ml-auto rounded-2xl border border-border bg-surface overflow-hidden">
             <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 text-center px-6">
               <span className="font-mono text-xs text-muted">
@@ -111,13 +107,13 @@ function Professional({ onEnterUnprofessional }) {
                 Swap in /images/headshot.jpg
               </span>
             </div>
-            {/* Uncomment once the photo exists:
+            {
             <img
               src="/images/headshot.jpg"
               alt="Krithi Iyer"
               className="absolute inset-0 w-full h-full object-cover"
             />
-            */}
+            }
           </div>
         </section>
 

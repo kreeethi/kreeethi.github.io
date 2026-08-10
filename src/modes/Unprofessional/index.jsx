@@ -48,7 +48,7 @@ function Unprofessional({ onExit }) {
       <header className="flex flex-wrap items-center justify-between gap-4 px-4 md:px-8 py-5">
         <div>
           <p className="text-xs uppercase tracking-[0.2em] text-[#FF9E3D]/80">
-            Unprofessional Mode
+            Neuron Mode
           </p>
           <p className="text-sm text-slate-400 mt-1">
             Click a part of the neuron to explore.
