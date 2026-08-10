@@ -99,21 +99,11 @@ function Professional({ onEnterUnprofessional }) {
           </div>
 
           <div className="relative aspect-[4/5] w-full max-w-xs md:max-w-sm mx-auto md:mx-0 md:ml-auto rounded-2xl border border-border bg-surface overflow-hidden">
-            <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 text-center px-6">
-              <span className="font-mono text-xs text-muted">
-                Photo placeholder
-              </span>
-              <span className="font-mono text-[11px] text-muted/70">
-                Swap in /images/headshot.jpg
-              </span>
-            </div>
-            {
             <img
               src="/images/headshot.jpg"
               alt="Krithi Iyer"
               className="absolute inset-0 w-full h-full object-cover"
             />
-            }
           </div>
         </section>
 
