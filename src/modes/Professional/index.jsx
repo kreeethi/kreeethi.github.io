@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import { projects } from "../../data/projects";
 import { experienceItems } from "../../data/experience";
 import { notesItems } from "../../data/notes";
@@ -13,11 +13,6 @@ function Professional({ onEnterUnprofessional }) {
   // If 1–2 projects, don't scroll; if 3+, enable carousel behavior
   const projectsUseCarousel = projectsCount >= 3;
   const researchUseCarousel = researchCount >= 3;
-
-  const projectTileWidth = useMemo(() => {
-    // When carousel, use fixed card width; when not, let them stretch nicely
-    return projectsUseCarousel ? "w-[340px] md:w-[420px]" : "w-full";
-  }, [projectsUseCarousel]);
 
   return (
     <div className="relative min-h-screen bg-bg text-ink font-sans">
@@ -41,7 +36,7 @@ function Professional({ onEnterUnprofessional }) {
         className="pointer-events-none absolute inset-x-0 top-0 h-64 hidden dark:block bg-gradient-to-b from-accent/10 to-transparent"
       />
 
-      <div className="relative max-w-5xl mx-auto px-4 py-10 md:py-16 space-y-14">
+      <div className="relative max-w-7xl mx-auto px-6 md:px-10 lg:px-14 py-10 md:py-16 space-y-16">
         {/* Header */}
         <header className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
           <div>
@@ -82,7 +77,7 @@ function Professional({ onEnterUnprofessional }) {
         </header>
 
         {/* Hero */}
-        <section className="grid md:grid-cols-[2fr,1.3fr] gap-10 md:gap-14 items-start">
+        <section className="max-w-3xl">
           <div className="space-y-4">
             <p className="font-mono uppercase tracking-[0.2em] text-xs text-accent-2/90">
               Portfolio
@@ -131,7 +126,7 @@ function Professional({ onEnterUnprofessional }) {
                     <button
                       key={p.id}
                       onClick={() => setExpandedId(isOpen ? null : p.id)}
-                      className={`snap-start shrink-0 self-stretch w-[320px] md:w-[420px] flex flex-col text-left rounded-2xl border p-5 transition-all ${
+                      className={`snap-start shrink-0 self-stretch w-[340px] md:w-[460px] flex flex-col text-left rounded-2xl border p-5 transition-all ${
                         isOpen
                           ? "border-accent/70 bg-surface"
                           : "border-border bg-surface/60 hover:bg-surface hover:border-muted/60"
@@ -168,7 +163,7 @@ function Professional({ onEnterUnprofessional }) {
               </div>
             </div>
           ) : (
-            <div className="grid md:grid-cols-2 gap-6">
+            <div className="grid md:grid-cols-2 gap-8">
               {projects.map((p) => {
                 const isOpen = expandedId === p.id;
 
@@ -250,7 +245,7 @@ function Professional({ onEnterUnprofessional }) {
               </div>
 
               {/* Main sections */}
-              <div className="grid md:grid-cols-3 gap-5">
+              <div className="grid md:grid-cols-3 gap-6">
                 {expandedProject.sections.map((sec) => (
                   <div
                     key={sec.heading}
@@ -311,7 +306,7 @@ function Professional({ onEnterUnprofessional }) {
                 {experienceItems.map((r) => (
                   <div
                     key={r.id}
-                    className="snap-start shrink-0 w-[340px] md:w-[420px] rounded-2xl border border-border bg-surface/60 p-5"
+                    className="snap-start shrink-0 w-[360px] md:w-[460px] rounded-2xl border border-border bg-surface/60 p-5"
                   >
                     <h3 className="font-display font-semibold text-base md:text-lg leading-snug">
                       {r.title}
@@ -342,7 +337,7 @@ function Professional({ onEnterUnprofessional }) {
               </div>
             </div>
           ) : (
-            <div className="grid md:grid-cols-2 gap-6">
+            <div className="grid md:grid-cols-2 gap-8">
               {experienceItems.map((r) => (
                 <div
                   key={r.id}
@@ -401,7 +396,7 @@ function Professional({ onEnterUnprofessional }) {
               {notesItems.map((n) => (
                 <div
                   key={n.id}
-                  className="snap-start shrink-0 w-[320px] md:w-[420px] rounded-2xl border border-border bg-surface/60 p-5"
+                  className="snap-start shrink-0 w-[340px] md:w-[460px] rounded-2xl border border-border bg-surface/60 p-5"
                 >
                   <div className="flex items-start justify-between gap-3">
                     <h3 className="font-display font-semibold text-base md:text-lg leading-snug">
