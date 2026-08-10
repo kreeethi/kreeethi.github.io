@@ -1,0 +1,49 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" fill="none">
+  <!--
+    TEMPORARY PLACEHOLDER. This is a simple structural stand-in, not final
+    artwork — see Stage 7. When it's replaced, the hit-area coordinates in
+    ../regions.js are the only thing that should need re-aligning.
+  -->
+
+  <!-- Dendrites: four interactive trunks (matching regions.js), plus a
+       few small decorative sub-branches near each tip that are NOT
+       separately clickable. -->
+  <g stroke="#64748b" stroke-width="2" stroke-linecap="round">
+    <path d="M160 200 C 110 150, 70 90, 40 60" />
+    <path d="M160 190 C 100 170, 55 155, 25 150" />
+    <path d="M160 210 C 100 230, 55 245, 25 250" />
+    <path d="M160 200 C 110 250, 70 310, 40 340" />
+
+    <!-- decorative sub-branches -->
+    <path d="M85 120 C 72 108, 60 100, 48 88" stroke-width="1.5" opacity="0.6" />
+    <path d="M60 165 C 48 160, 40 158, 32 156" stroke-width="1.5" opacity="0.6" />
+    <path d="M60 235 C 48 240, 40 242, 32 244" stroke-width="1.5" opacity="0.6" />
+    <path d="M85 280 C 72 292, 60 300, 48 312" stroke-width="1.5" opacity="0.6" />
+  </g>
+
+  <!-- Axon: single shaft, branching into six terminals (matching
+       regions.js). Real axons branch at the terminal, not along the
+       shaft, so this stays anatomically reasonable. -->
+  <g stroke="#94a3b8" stroke-width="2.5" stroke-linecap="round">
+    <path d="M215 200 L 520 200" />
+    <path d="M520 200 C 560 190, 590 130, 620 70" />
+    <path d="M520 200 C 570 210, 620 170, 660 110" />
+    <path d="M520 200 C 590 200, 650 190, 685 170" />
+    <path d="M520 200 C 590 200, 650 210, 685 230" />
+    <path d="M520 200 C 570 190, 620 230, 660 290" />
+    <path d="M520 200 C 560 210, 590 270, 620 330" />
+  </g>
+
+  <!-- Terminal boutons -->
+  <g fill="#cbd5e1">
+    <circle cx="620" cy="70" r="6" />
+    <circle cx="660" cy="110" r="6" />
+    <circle cx="685" cy="170" r="6" />
+    <circle cx="685" cy="230" r="6" />
+    <circle cx="660" cy="290" r="6" />
+    <circle cx="620" cy="330" r="6" />
+  </g>
+
+  <!-- Soma -->
+  <circle cx="160" cy="200" r="55" fill="#1e293b" stroke="#f0c987" stroke-width="2.5" />
+</svg>
