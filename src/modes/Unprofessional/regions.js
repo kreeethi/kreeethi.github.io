@@ -34,7 +34,7 @@ const AXON_TERMINALS = [
 // more slowly than projects). Fine branching in the artwork is purely
 // decorative and isn't represented here at all.
 const DENDRITE_TRUNKS = [
-  { id: "dendrite-1", x: 3.4, y: 6.4 },
+  //{ id: "dendrite-1", x: 3.5, y: 6.4 },
   { id: "dendrite-2", x: 1.8, y: 36 },
   { id: "dendrite-3", x: 3.7, y: 53 },
   { id: "dendrite-4", x: 2.9, y: 86 },
@@ -64,13 +64,13 @@ const DENDRITE_TRUNKS = [
 // visual check after adding real coordinates for dendrites/axons, since
 // this was verified against an earlier, sparser version of those.
 const NOTE_SLOTS = [
-  { id: "note-1", x: 50, y: 24 },
+  { id: "note-1", x: 50, y: 20 },
   { id: "note-2", x: 58, y: 30 },
-  { id: "note-3", x: 42, y: 34 },
+  { id: "note-3", x: 52, y: 34 },
   { id: "note-4", x: 63, y: 40 },
-  { id: "note-5", x: 48, y: 46 },
+  { id: "note-5", x: 42, y: 46 },
   { id: "note-6", x: 55, y: 52 },
-  { id: "note-7", x: 44, y: 58 },
+  { id: "note-7", x: 40, y: 58 },
   { id: "note-8", x: 62, y: 60 },
 ];
 

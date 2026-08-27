@@ -101,8 +101,8 @@ function Professional({ onEnterUnprofessional }) {
               <span className="text-accent-2 font-medium">
                 "Neuron Mode"
               </span> {" "}
-              to this portfolio, to explore my experiences from a different perspective. This mode is currently not viewable
-              on a mobile device.
+              to this portfolio, to explore my experiences from a different perspective. This mode is best viewed on a 
+              larger screen.
               
             </p>
           </div>

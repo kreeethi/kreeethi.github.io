@@ -35,11 +35,8 @@ export const projects = [
     reflection: {
       heading: "Reflection",
       paragraphs: [
-        "I switched to EE from BME so I could build the technical skills that would help me become a better neuroengineer (particularly with a focus in neural signal processing and neural prosthetics).",
-        "I really don’t think I was that prepared for how math-heavy and difficult EE would be, and I often found myself missing the neuroscience theory and biological side of everything.",
-        "This project helped me merge my fascination with neuroscience with the signal processing skills I have learned throughout 3084.",
-        "I read a lot more papers than I referenced in this document, and watched a lot more YouTube videos.",
-        "I’m really excited to carry on with doing different experiments with this dataset, now that the hard part of actually downloading it is done.",
+        "I switched to EE from BME so I could build the technical skills that would help me become a better neuroengineer (particularly with a focus in neural signal processing and neural prosthetics). I really don’t think I was that prepared for how math-heavy and difficult EE would be, and I often found myself missing the neuroscience theory and biological side of everything.",
+        "This project helped me merge my fascination with neuroscience with the signal processing skills I have learned throughout my coursework. I read a lot more papers than I referenced in this document, and watched a lot more YouTube videos. I’m really excited to carry on with doing different experiments with this dataset, now that the hard part of actually downloading it is done.",
       ],
     },
   },
