@@ -6,20 +6,30 @@
 
 export const experienceItems = [
   {
-    id: "comparative-neuromechanics",
-    title: "Comparative Neuromechanics Lab",
-    description:
-      "DeepLabCut-based tracking and kinematic modeling of rat gait, focusing on extraction of bony landmark trajectories.",
-    link: null,
-  },
-  {
     id: "alzheimers",
-    title: "Neuroimmune Modulation with Audiovisual Flicker (Singer Lab)",
+    title: "Singer Lab",
     description:
       "3D analysis of microglia, astrocytes, and amyloid beta plaque interactions in mouse models of chronic stress and neurodegeneration. Exploring how noninvasive audiovisual flicker can recruit neuroimmune cells.",
     links: [
-      { label: "Abstract", href: "/research/singer-abstract.pdf" },
+      { label: "AAIC 26", href: "/research/singer-lab/aaic26.pdf"},
+      { label: "SfN 26", href: "/research/singer-lab/sfn26.pdf"},
+      { label: "FA25 Symp.", href: "/research/singer-lab/singer-abstract.pdf" },
     ],
+  },
+  {
+    id: "petasense",
+    title: "Petasense",
+    description:
+      "Developed and tested SNR recovery algorithms for low-RPM machinery use cases.",
+  },
+  {
+    id: "comparative-neuromechanics",
+    title: "Comparative Neuromechanics Lab",
+    description:
+      "Using XMALab to correct incorrectly predicted bony landmark positions from DeepLabCut outputs.",
+    links: [
+      { label: "Paper", href: "https://www.sciencedirect.com/science/article/pii/S0010482526003471"}
+    ]
   },
   {
     id: "sci-moorjani",

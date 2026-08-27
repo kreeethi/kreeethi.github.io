@@ -3,6 +3,7 @@ import { projects } from "../../data/projects";
 import { experienceItems } from "../../data/experience";
 import { notesItems } from "../../data/notes";
 import ThemeToggle from "./ThemeToggle";
+import ProjectGallery from "./ProjectGallery";
 
 function Professional({ onEnterUnprofessional }) {
   const [expandedId, setExpandedId] = useState("fsr");
@@ -64,16 +65,16 @@ function Professional({ onEnterUnprofessional }) {
             <a href="#contact" className="hover:text-accent transition-colors">
               Contact
             </a>
-            <a href="/resume/krithi-iyer-resume-2026.pdf" className="hover:text-accent transition-colors">
+            {/* <a href="/resume/krithi-iyer-resume-2026.pdf" className="hover:text-accent transition-colors">
               Resume (PDF)
-            </a>
+            </a> */}
             <ThemeToggle />
             <button
               type="button"
               onClick={onEnterUnprofessional}
               className="text-sm px-3 py-1.5 rounded-full border border-border hover:border-accent/60 hover:text-accent transition-colors"
             >
-              Unprofessional Mode →
+              Neuron Mode →
             </button>
           </nav>
         </header>
@@ -82,25 +83,33 @@ function Professional({ onEnterUnprofessional }) {
         <section className="grid md:grid-cols-[1.1fr,1fr] gap-10 md:gap-14 items-center">
           <div className="space-y-4 max-w-xl">
             <p className="font-mono uppercase tracking-[0.2em] text-xs text-accent-2/90">
-              Portfolio
+              Hello!
             </p>
             <p className="text-sm md:text-base text-muted leading-relaxed">
-              I&apos;m an Electrical Engineering undergraduate at Georgia Tech with interests in
-              brain-computer interfaces, computational neuroscience, and biological signal processing.
+              I&apos;m an Electrical Engineering undergraduate at Georgia Tech interested in biological
+              signal processing and medical devices.
             </p>
 
             <p className="text-sm md:text-base text-muted leading-relaxed mt-2">
-              This site is a collection of{" "}
+              This portfolio showcases my {" "}
               <span className="text-accent-2 font-medium">
-                projects, research, and ideas
+                experiences
               </span>{" "}
-              I&apos;m currently working through.
+              which don't all fit on my resume. Outside of academics, I love playing word games (Washington Post
+              Crossword, Minute Cryptic, LinkedIn's Wend!), and doodling neurons, which became a fascination of mine 
+              after seeing Santiago Cajal's neuroanatomy drawings. I've added a {" "}
+              <span className="text-accent-2 font-medium">
+                "Neuron Mode"
+              </span> {" "}
+              to this portfolio, to explore my experiences from a different perspective. This mode is currently not viewable
+              on a mobile device.
+              
             </p>
           </div>
 
           <div className="relative aspect-[3/2] w-full max-w-md mx-auto md:mx-0 md:ml-auto rounded-2xl border border-border bg-surface overflow-hidden">
             <img
-              src="/images/headshot.jpg"
+              src="/images/portfolio-pic.jpg"
               alt="Krithi Iyer"
               className="absolute inset-0 w-full h-full object-cover"
             />
@@ -112,7 +121,7 @@ function Professional({ onEnterUnprofessional }) {
           <div>
             <h2 className="font-display text-xl md:text-2xl font-semibold">Projects</h2>
             <p className="text-sm text-muted mt-1">
-              Click a project to expand.
+              Click on a project to learn more.
             </p>
             <p className="font-mono text-xs text-muted/80 mt-2">
               Scroll → for more
@@ -271,6 +280,8 @@ function Professional({ onEnterUnprofessional }) {
                     </ul>
                   </div>
                 ))}
+
+                <ProjectGallery images={expandedProject.images} />
               </div>
 
               {/* Reflection */}
@@ -295,9 +306,9 @@ function Professional({ onEnterUnprofessional }) {
         {/* Research (part of "experience" data, rendered as its own section here) */}
         <section id="research" className="space-y-6">
           <div>
-            <h2 className="font-display text-xl md:text-2xl font-semibold">Research</h2>
+            <h2 className="font-display text-xl md:text-2xl font-semibold">Experiences</h2>
             <p className="text-sm text-muted mt-1">
-              Research projects I’ve contributed to. Public artifacts linked where available.
+              Work experiences and research projects I’ve contributed to. I've linked public artifacts where available.
             </p>
             <p className="font-mono text-xs text-muted/80 mt-2">
               Scroll → for more
@@ -388,7 +399,7 @@ function Professional({ onEnterUnprofessional }) {
           <div>
             <h2 className="font-display text-xl md:text-2xl font-semibold">Notes</h2>
             <p className="text-sm text-muted mt-1">
-              Questions, ideas, and lenses I’m currently thinking with.
+              Random things I think about, quotes I like, and other miscellanea.
             </p>
             <p className="font-mono text-xs text-muted/80 mt-2">
               Scroll → for more

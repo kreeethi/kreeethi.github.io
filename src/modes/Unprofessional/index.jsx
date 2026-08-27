@@ -3,6 +3,7 @@ import Neuron from "./Neuron";
 import ContentPanel from "./ContentPanel";
 import { projects } from "../../data/projects";
 import { experienceItems } from "../../data/experience";
+import { notesItems } from "../../data/notes";
 
 function Unprofessional({ onExit }) {
   const [activeRegion, setActiveRegion] = useState(null);
@@ -37,9 +38,22 @@ function Unprofessional({ onExit }) {
         .panel-enter {
           animation: panel-enter 200ms cubic-bezier(0.16, 1, 0.3, 1);
         }
+        @keyframes neuron-particle-drift {
+          0%   { transform: translate(-50%, -50%) translate(0, 0); opacity: 0.25; }
+          25%  { opacity: 0.7; }
+          50%  { transform: translate(-50%, -50%) translate(6px, -8px); opacity: 0.4; }
+          75%  { opacity: 0.7; }
+          100% { transform: translate(-50%, -50%) translate(0, 0); opacity: 0.25; }
+        }
+        .neuron-particle {
+          animation-name: neuron-particle-drift;
+          animation-timing-function: ease-in-out;
+          animation-iteration-count: infinite;
+        }
         @media (prefers-reduced-motion: reduce) {
           .neuron-hit-dot,
-          .panel-enter {
+          .panel-enter,
+          .neuron-particle {
             animation: none;
           }
         }
@@ -48,7 +62,7 @@ function Unprofessional({ onExit }) {
       <header className="flex flex-wrap items-center justify-between gap-4 px-4 md:px-8 py-5">
         <div>
           <p className="text-xs uppercase tracking-[0.2em] text-[#FF9E3D]/80">
-            Neuron Mode
+            Unprofessional Mode
           </p>
           <p className="text-sm text-slate-400 mt-1">
             Click a part of the neuron to explore.
@@ -67,6 +81,7 @@ function Unprofessional({ onExit }) {
         <Neuron
           projects={projects}
           experienceItems={experienceItems}
+          notesItems={notesItems}
           onActivate={handleActivate}
         />
       </main>
@@ -75,6 +90,7 @@ function Unprofessional({ onExit }) {
         region={activeRegion}
         projects={projects}
         experienceItems={experienceItems}
+        notesItems={notesItems}
         onClose={handleClose}
         triggerRef={triggerRef}
       />

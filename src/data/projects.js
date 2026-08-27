@@ -1,11 +1,58 @@
 export const projects = [
   {
+    id: "neuro-matched-filter",
+    title: "Matched-Filter for Stimulus Onset Prediction",
+    highlight:
+      "Designed a matched-filter to determine flash onset based on neural responses in the mouse visual cortex.",
+    tags: ["Matched-filter", "Allen Data Set", "Cross-correlation"],
+    tech: "SciPy, Matplotlib, NumPy, data visualization",
+    images: [
+      { src: "/images/projects/neuro-matched/result.png", alt: "Result from Matched Filter" },
+      { src: "/images/projects/neuro-matched/spike-timing.png", alt: "Spike-timing from one VISP unit" }
+    ],
+    links: [
+      { label: "Repo", href: "https://github.com/kreeethi/allen-matched-filter" },
+      { label: "Report", href: "/projects/neuro-matched-filter/allen-matched-filter.pdf" },
+    ],
+    sections: [
+      {
+        heading: "What I did",
+        bullets: [
+          "Explored strength of individual neuronal responses to full-field flash stimuli.",
+          "Calculated population neural responses to full-field flash stimuli.",
+          "Designed and thresholded a matched-filter.",
+          "Validated predicted flash times against actual flash times.",
+        ],
+      },
+      {
+        heading: "Why it was hard",
+        bullets: [
+          "Biological data can be very noisy. It was difficult to find a final 'stopping point' where the matched-filter couldn't be improved anymore due to noise.",
+          "Version compatibility issues between the python version I had and the versions the Allen Dataset required was a huge roadblock in starting the project.",
+        ],
+      },
+    ],
+    reflection: {
+      heading: "Reflection",
+      paragraphs: [
+        "I switched to EE from BME so I could build the technical skills that would help me become a better neuroengineer (particularly with a focus in neural signal processing and neural prosthetics).",
+        "I really don’t think I was that prepared for how math-heavy and difficult EE would be, and I often found myself missing the neuroscience theory and biological side of everything.",
+        "This project helped me merge my fascination with neuroscience with the signal processing skills I have learned throughout 3084.",
+        "I read a lot more papers than I referenced in this document, and watched a lot more YouTube videos.",
+        "I’m really excited to carry on with doing different experiments with this dataset, now that the hard part of actually downloading it is done.",
+      ],
+    },
+  },
+  {
     id: "fsr",
     title: "FSR Calibration for Prosthetic Grip Sensing",
     highlight:
       "Designed a calibration workflow to translate noisy FSR voltage readings into interpretable grip-force estimates.",
     tags: ["Circuits", "Calibration", "Prosthetics", "Protocols"],
     tech: "Arduino, FSRs, voltage divider, data calibration",
+    images: [
+      { src: "/images/projects/fsr/set_up_with_clamp.webp", alt: "Clamp set-up" }
+    ],
     links: [
       { label: "Repo", href: "https://github.com/kreeethi/fsr-calibration" },
       { label: "Demo Video", href: "https://youtu.be/62SAwx68mfI?si=2xxjBSnZVEQOxt-A" },
@@ -27,13 +74,6 @@ export const projects = [
           "The goal was a stable, repeatable process that can be improved, rather than a perfect curve once.",
         ],
       },
-      {
-        heading: "Next steps",
-        bullets: [
-          "Build a modular mounting/integration system for an FSR in a prosthetic finger.",
-          "Test how placement affects signal stability and usable force range.",
-        ],
-      },
     ],
     reflection: {
       heading: "Reflection",
@@ -52,6 +92,11 @@ export const projects = [
       "Prototyped a multi-sensor IV monitoring concept to distinguish failure modes for early, actionable alerts.",
     tags: ["Sensors", "Prototyping", "Healthcare"],
     tech: "Arduino, sensor fusion, thresholding + predictive logic",
+    images: [
+      { src: "/images/projects/iv/circuit-close-up.jpeg", alt: "Circuit Close Up" },
+      { src: "/images/projects/iv/full-set-up.jpeg", alt: "Full Set Up" },
+      { src: "/images/projects/iv/group-pic.jpeg", alt: "Group Picture!" }
+    ],
     links: [
       { label: "Repo", href: "https://github.com/kreeethi/final-mth-code-2026" },
       { label: "Presentation", href: "/projects/iv-alert/iv-presentation.pdf" },
@@ -74,14 +119,6 @@ export const projects = [
           "Each sensor has edge cases. We had to decide how to combine signals without overfitting to one.",
         ],
       },
-      {
-        heading: "Next steps",
-        bullets: [
-          "Using more predictive modeling (i.e. drip rate) to improve early alerts.",
-          "More compact assembly - converting circuit into PCB design.",
-          "Implementing a movement-based ML model to determine which patient movements might trigger IV failure.",
-        ],
-      },
     ],
     reflection: {
       heading: "Reflection",
@@ -99,9 +136,12 @@ export const projects = [
       "Designed a PIR sensor-driven cat toy using a state machine to create responsive behavior based on motion detection.",
     tags: ["Embedded Systems", "PIR Sensor", "State Machines"],
     tech: "Arduino, PIR sensor, servo motor, finite state machine logic",
+    images: [
+      { src: "/images/projects/pir/final-circuit.png", alt: "Final PIR circuit" }
+    ],
     links: [
       { label: "State Diagram", href: "/projects/cat-toy/cat-toy-state-diagram.pdf" },
-      { label: "Prototyping Process (PDF)", href: "/project/cat-toy/cat-toy-prototyping-process.pdf" },
+      { label: "Prototyping Process (PDF)", href: "/projects/cat-toy/cat-toy-prototyping-process-2.pdf" },
       { label: "Demo Video", href: "https://youtu.be/BjBKAhAz6ts?si=Je_egIbfmNa8WPfo" },
     ],
     sections: [
@@ -121,14 +161,6 @@ export const projects = [
           "Shifted from loop-based control to event-driven logic so behavior was responding to real-time input",
         ],
       },
-      {
-        heading: "The Outcome",
-        bullets: [
-          "Produced a working prototype with distinct behavioral states and responsive transitions",
-          "Achieved more varied and less predictable motion compared to simple loop-based design",
-          "Still slightly finicky and may not accurately represent prey like behavior for cats",
-        ],
-      },
     ],
     reflection: {
       heading: "Reflection",
@@ -138,52 +170,6 @@ export const projects = [
       ],
     },
   },
-
-  {
-    id: "neuro",
-    title: "Neuronal Modeling & Analysis",
-    highlight:
-      "Implemented small computational neuroscience tools to connect theory to code and intuition.",
-    tags: ["Neuro", "Modeling", "Python"],
-    tech: "Python, NumPy, Matplotlib",
-    images: [],
-    links: [
-      { label: "Repo", href: "https://github.com/kreeethi/comp-neuro" }
-    ],
-    sections: [
-      {
-        heading: "What it includes (so far)",
-        bullets: [
-          "Leaky integrate-and-fire neuron simulations",
-          "Spike-triggered averaging (STA) experiments",
-          "Oja’s rule as a simple plasticity model",
-        ],
-      },
-      {
-        heading: "Direction",
-        bullets: [
-          "Gain conceptual understanding of computational neuroscience topics.",
-          "Turn each concept into a notebook-style, reflective writeup with plots.",
-          "Build toward population-level models or sensory encoding mini-studies.",
-        ],
-      },
-      {
-        heading: "Next steps",
-        bullets: [
-          "Select a narrative thread and do a 'case-study' deep dive.",
-          "Add a small artifact gallery of plots and explanatory figures.",
-        ],
-      },
-    ],
-    reflection: {
-      heading: "Reflection",
-      paragraphs: [
-        "I like projects like this because they force clarity: if I can’t explain the behavior with a plot and a few sentences, I don’t really understand it.",
-        "This is my sandbox for building intuition that I can later bring into real neural signals and closed-loop systems.",
-      ],
-    },
-  },
-
   {
     id: "arm-band",
     title: "Integration of Vibration Motors for Prosthetic Haptic Feedback",
@@ -191,6 +177,9 @@ export const projects = [
       "Prototyped spring-cord lock mechanism and an iteratively fabricated arm band for haptic feedback integration.",
     tags: ["CAD", "Integration", "Prosthetics", "Prototyping"],
     tech: "Fusion 360, Neoprene, 3D Printing, Bambu Studio, Sewing",
+    images: [
+      { src: "/images/projects/arm-band/cad.png", alt: "CAD model for arm-band clasp" }
+    ],
     links: [
       { label: "Design Sketches", href: "/projects/arm-band/prototype-design.pdf" },
     ],
@@ -210,13 +199,6 @@ export const projects = [
           "Material trade-offs: Neoprene is ideal for comfort and flexibility, but is difficult to sew.",
           "Comfort vs. stability: Ensuring secure attachment without leading to discomfort or restricted movement.",
           "Integration: Everything was very small. Fitting motors, wiring, and the locking mechanism into something compact was challenging.",
-        ],
-      },
-      {
-        heading: "Outcome",
-        bullets: [
-          "Produced a functional prototype that was used for testing of the vibration motors.",
-          "Established a modular mechanical design that could be easily further developed for future iterations.",
         ],
       },
     ],

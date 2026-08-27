@@ -4,13 +4,21 @@ function AboutContent() {
   return (
     <div className="space-y-3">
       <p className="text-sm text-slate-300 leading-relaxed">
-        Electrical engineering student at Georgia Tech, interested in
-        brain-computer interfaces, computational neuroscience, and
-        biological signal processing.
+        I am an Electrical Engineering undergraduate at Georgia Tech, and I'm 
+        really interested in the intersection of biology, specifically neuroscience, 
+        and technology. I've always had an affinity for doodling, and when I chanced
+        upon Santiago Cajal's work, I realized I could blend my two interests. The
+        neuron you see on your screen is one I drew, inspired by both Cajal's
+        neuroanatomy drawings, and the visuals I see on the Imaris computer when
+        I'm reconstructing microscopy images for the Singer Lab.
       </p>
       <p className="text-sm text-slate-300 leading-relaxed">
-        This is the soma — the core of things. The dendrites (left) hold
-        experience and research; the axon (right) holds projects.
+        You're currently at the soma - the core of the neuron. To your left
+        are the dendrites, the attenae of the neuron that receieve information.
+        Clicking on any of the glowing dots will reveal my experiences - where I've
+        learned, and continue to learn, much of what I know today. To your right
+        are the axon terminals, where information from the neuron is transmitted to
+        other neurons. These contain the various projects I have built.
       </p>
     </div>
   );
@@ -76,8 +84,13 @@ function ExperienceContent({ item }) {
   );
 }
 
-function OverflowList({ region, projects, experienceItems }) {
-  const source = region.type === "project-overflow" ? projects : experienceItems;
+function OverflowList({ region, projects, experienceItems, notesItems }) {
+  const sourceMap = {
+    "project-overflow": projects,
+    "experience-overflow": experienceItems,
+    "note-overflow": notesItems,
+  };
+  const source = sourceMap[region.type] ?? [];
   const items = source.filter((item) => region.dataIds.includes(item.id));
   return (
     <ul className="space-y-2">
@@ -93,9 +106,37 @@ function OverflowList({ region, projects, experienceItems }) {
   );
 }
 
-function resolveContent(region, projects, experienceItems) {
+function SingleNoteContent({ note }) {
+  if (!note) return null;
+  return (
+    <div className="space-y-2">
+      <span className="inline-block text-[11px] px-2 py-0.5 rounded-full border border-slate-700 text-slate-400">
+        {note.type}
+      </span>
+      {Array.isArray(note.body) ? (
+        <ul className="space-y-1 text-sm text-slate-300 leading-relaxed list-disc list-inside">
+          {note.body.map((line) => (
+            <li key={line}>{line}</li>
+          ))}
+        </ul>
+      ) : (
+        <p className="text-sm text-slate-300 leading-relaxed">{note.body}</p>
+      )}
+    </div>
+  );
+}
+
+function resolveContent(region, projects, experienceItems, notesItems) {
   if (region.type === "about") {
     return { title: region.label, body: <AboutContent /> };
+  }
+
+  if (region.type === "note") {
+    const note = notesItems.find((n) => n.id === region.dataId);
+    return {
+      title: note?.title ?? region.label,
+      body: <SingleNoteContent note={note} />,
+    };
   }
 
   if (region.type === "project") {
@@ -114,7 +155,7 @@ function resolveContent(region, projects, experienceItems) {
     };
   }
 
-  // project-overflow / experience-overflow
+  // project-overflow / experience-overflow / note-overflow
   return {
     title: region.label,
     body: (
@@ -122,12 +163,13 @@ function resolveContent(region, projects, experienceItems) {
         region={region}
         projects={projects}
         experienceItems={experienceItems}
+        notesItems={notesItems}
       />
     ),
   };
 }
 
-function ContentPanel({ region, projects, experienceItems, onClose, triggerRef }) {
+function ContentPanel({ region, projects, experienceItems, notesItems, onClose, triggerRef }) {
   const closeButtonRef = useRef(null);
 
   useEffect(() => {
@@ -148,7 +190,7 @@ function ContentPanel({ region, projects, experienceItems, onClose, triggerRef }
 
   if (!region) return null;
 
-  const { title, body } = resolveContent(region, projects, experienceItems);
+  const { title, body } = resolveContent(region, projects, experienceItems, notesItems);
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
