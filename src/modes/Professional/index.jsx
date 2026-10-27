@@ -57,7 +57,7 @@ function Professional({ onEnterUnprofessional }) {
               Projects
             </a>
             <a href="#research" className="hover:text-accent transition-colors">
-              Research
+              Experience
             </a>
             <a href="#notes" className="hover:text-accent transition-colors">
               Notes
