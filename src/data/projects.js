@@ -12,7 +12,7 @@ export const projects = [
     ],
     links: [
       { label: "Repo", href: "https://github.com/kreeethi/allen-matched-filter" },
-      { label: "Report", href: "/projects/neuro-matched-filter/allen-matched-filter.pdf" },
+      { label: "Report", href: "/projects/neuro-matched-filter/allen-filter.pdf" },
     ],
     sections: [
       {
